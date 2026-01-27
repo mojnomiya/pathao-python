@@ -1,0 +1,17 @@
+title: Pathao Python SDK
+description: A comprehensive Python SDK for the Pathao Courier Merchant API
+baseurl: "/pathao-python"
+url: "https://yourusername.github.io"
+
+markdown: kramdown
+highlighter: rouge
+theme: minima
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+exclude:
+  - .github/
+  - .gitignore
+  - README.md

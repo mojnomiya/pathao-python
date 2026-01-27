@@ -1,3 +1,8 @@
+---
+layout: default
+title: Home
+---
+
 # Pathao Python SDK Documentation
 
 Welcome to the comprehensive documentation for the Pathao Python SDK. This SDK provides a clean, Pythonic interface to integrate Pathao's courier services into your Python applications.
