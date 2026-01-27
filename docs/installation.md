@@ -38,7 +38,7 @@ print(pathao.__version__)
 try:
     client = pathao.PathaoClient(
         client_id="test",
-        client_secret="test", 
+        client_secret="test",
         username="test",
         password="test",
         environment="sandbox"

@@ -9,7 +9,7 @@ The Pathao Python SDK uses OAuth 2.0 authentication with automatic token managem
 1. Contact Pathao to get merchant API access
 2. You'll receive:
    - Client ID
-   - Client Secret  
+   - Client Secret
    - Username (email)
    - Password
 
@@ -84,7 +84,7 @@ client.refresh_token()
 - Use `environment="sandbox"`
 - API Base URL: `https://courier-api-sandbox.pathao.com`
 
-### Production Environment  
+### Production Environment
 - For live operations
 - Use `environment="production"`
 - API Base URL: `https://api.pathao.com`
@@ -98,14 +98,14 @@ try:
     client = PathaoClient(
         client_id="invalid_id",
         client_secret="invalid_secret",
-        username="invalid@email.com", 
+        username="invalid@email.com",
         password="invalid_password",
         environment="sandbox"
     )
-    
+
     # This will trigger authentication
     token = client.get_access_token()
-    
+
 except AuthenticationError as e:
     print(f"Authentication failed: {e}")
 ```
@@ -134,13 +134,13 @@ def create_pathao_client():
             password=os.getenv("PATHAO_PASSWORD"),
             environment=os.getenv("PATHAO_ENV", "sandbox")
         )
-        
+
         # Test authentication
         token = client.get_access_token()
         print("✅ Authentication successful")
-        
+
         return client
-        
+
     except AuthenticationError as e:
         print(f"❌ Authentication failed: {e}")
         return None

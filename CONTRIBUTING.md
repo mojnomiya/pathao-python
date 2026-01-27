@@ -51,16 +51,16 @@ We welcome contributions to the Pathao Python SDK! This document provides guidel
    ```bash
    # Run tests
    pytest
-   
+
    # Run with coverage
    pytest --cov=pathao --cov-report=term-missing
-   
+
    # Format code
    black pathao tests
-   
+
    # Lint code
    flake8 pathao tests
-   
+
    # Type check
    mypy pathao
    ```

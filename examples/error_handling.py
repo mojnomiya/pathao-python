@@ -37,7 +37,7 @@ def demonstrate_authentication_error():
         )
 
         # This will trigger authentication
-        token = client.get_access_token()
+        _ = client.get_access_token()
 
     except AuthenticationError as e:
         print(f"✅ Caught AuthenticationError: {e}")
@@ -125,7 +125,7 @@ def demonstrate_configuration_error():
     print("\n⚙️ Testing Configuration Error...")
 
     try:
-        client = PathaoClient(
+        _ = PathaoClient(
             client_id="test_id",
             client_secret="test_secret",
             username="test@example.com",
@@ -212,7 +212,7 @@ def retry_with_backoff(func, max_retries=3, base_delay=1, *args, **kwargs):
         try:
             return func(*args, **kwargs)
 
-        except (NetworkError, APIError) as e:
+        except (NetworkError, APIError):
             if attempt == max_retries - 1:
                 raise  # Last attempt, re-raise
 
@@ -220,7 +220,7 @@ def retry_with_backoff(func, max_retries=3, base_delay=1, *args, **kwargs):
             print(f"⏳ Attempt {attempt + 1} failed, retrying in {delay}s...")
             time.sleep(delay)
 
-        except Exception as e:
+        except Exception:
             # Don't retry for other types of errors
             raise
 
@@ -305,13 +305,13 @@ def main():
         print(f"❌ Could not initialize valid client: {e}")
         print("💡 Set proper credentials in environment variables to test other errors")
 
-    print(f"\n🎉 Error handling example completed!")
-    print(f"\n📚 Key takeaways:")
-    print(f"   - Always catch specific exception types")
-    print(f"   - Provide user-friendly error messages")
-    print(f"   - Implement retry logic for network/API errors")
-    print(f"   - Log errors for debugging while showing clean messages to users")
-    print(f"   - Validate inputs before making API calls when possible")
+    print("🎉 Error handling example completed!")
+    print("📚 Key takeaways:")
+    print("   - Always catch specific exception types")
+    print("   - Provide user-friendly error messages")
+    print("   - Implement retry logic for network/API errors")
+    print("   - Log errors for debugging while showing clean messages to users")
+    print("   - Validate inputs before making API calls when possible")
 
 
 if __name__ == "__main__":

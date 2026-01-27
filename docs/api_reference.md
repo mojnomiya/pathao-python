@@ -1,7 +1,7 @@
 # Pathao Python SDK - API Reference
 
-**Version:** 0.1.0  
-**Last Updated:** January 2026  
+**Version:** 0.1.0
+**Last Updated:** January 2026
 **Status:** Complete Implementation ✅
 
 ---
@@ -128,7 +128,7 @@ client = PathaoClient()  # Reads from .env
 class PathaoClient:
     """
     Main client class for Pathao Courier API interactions.
-    
+
     Handles authentication, token management, and delegates
     operations to specific modules.
     """
@@ -644,10 +644,10 @@ class AuthToken:
     expires_in: int
     refresh_token: str
     created_at: datetime
-    
+
     def is_expired(self) -> bool:
         """Check if token has expired"""
-        
+
     def will_expire_soon(self, seconds: int = 300) -> bool:
         """Check if token will expire in N seconds"""
 ```
@@ -887,15 +887,15 @@ try:
     # Get available cities
     cities = client.locations.get_cities()
     dhaka = next(c for c in cities.data if c.city_name == "Dhaka")
-    
+
     # Get zones in Dhaka
     zones = client.locations.get_zones(city_id=dhaka.city_id)
     first_zone = zones.data[0]
-    
+
     # Get areas in zone
     areas = client.locations.get_areas(zone_id=first_zone.zone_id)
     first_area = areas.data[0]
-    
+
     # Calculate price
     price = client.prices.calculate(
         store_id=1,
@@ -905,9 +905,9 @@ try:
         recipient_city=dhaka.city_id,
         recipient_zone=first_zone.zone_id
     )
-    
+
     print(f"Delivery cost: {price.final_price} Taka")
-    
+
     # Create order
     order = client.orders.create(
         store_id=1,
@@ -924,12 +924,12 @@ try:
         item_weight=0.5,
         amount_to_collect=1000
     )
-    
+
     print(f"✓ Order created successfully!")
     print(f"  Consignment ID: {order.consignment_id}")
     print(f"  Status: {order.order_status}")
     print(f"  Fee: {order.delivery_fee} Taka")
-    
+
 except PathaoException as e:
     print(f"✗ Error: {e}")
 ```
@@ -987,19 +987,19 @@ try:
         item_weight=0.2,  # Below minimum
         amount_to_collect=0
     )
-    
+
 except ValidationError as e:
     print(f"Validation Error:")
     print(f"  Field: {e.field}")
     print(f"  Message: {e.message}")
-    
+
 except NotFoundError as e:
     print(f"Resource not found: {e}")
-    
+
 except NetworkError as e:
     print(f"Network error: {e}")
     print(f"Retry in {e.retry_after}s")
-    
+
 except PathaoException as e:
     print(f"Pathao error: {e}")
 ```
@@ -1015,6 +1015,6 @@ except PathaoException as e:
 
 ---
 
-**Documentation Status:** ✅ Complete - Reflects current implementation  
-**Last Updated:** January 2026  
+**Documentation Status:** ✅ Complete - Reflects current implementation
+**Last Updated:** January 2026
 **SDK Version:** 0.1.0

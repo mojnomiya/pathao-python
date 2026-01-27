@@ -76,7 +76,7 @@ class Store:
 ## Validation Rules
 
 - **store_name**: 3-50 characters
-- **contact_name**: 3-50 characters  
+- **contact_name**: 3-50 characters
 - **contact_number**: Exactly 11 digits (01XXXXXXXXX)
 - **address**: 15-120 characters
 - **city_id, zone_id, area_id**: Must be positive integers
@@ -89,7 +89,7 @@ from pathao import ValidationError, NotFoundError
 try:
     store = client.stores.create(
         store_name="Test Store",
-        contact_name="John Doe", 
+        contact_name="John Doe",
         contact_number="123",  # Invalid - too short
         address="Test Address",
         city_id=1,
@@ -118,17 +118,17 @@ def setup_store(client):
         if stores.data:
             print(f"Using existing store: {stores.data[0].store_name}")
             return stores.data[0]
-        
+
         # Get location data
         cities = client.locations.get_cities()
         dhaka = next((c for c in cities.data if "dhaka" in c.city_name.lower()), None)
-        
+
         if not dhaka:
             raise ValueError("Dhaka city not found")
-        
+
         zones = client.locations.get_zones(dhaka.city_id)
         areas = client.locations.get_areas(zones.data[0].zone_id)
-        
+
         # Create new store
         store = client.stores.create(
             store_name="My Business Store",
@@ -139,10 +139,10 @@ def setup_store(client):
             zone_id=zones.data[0].zone_id,
             area_id=areas.data[0].area_id
         )
-        
+
         print(f"✅ Store created: {store.store_name} (ID: {store.store_id})")
         return store
-        
+
     except ValidationError as e:
         print(f"❌ Validation error: {e}")
         return None

@@ -1,9 +1,9 @@
 # Software Requirements Specification (SRS)
 ## Pathao Courier Python SDK
 
-**Document Version:** 1.1  
-**Date:** January 2026  
-**Author:** Development Team  
+**Document Version:** 1.1
+**Date:** January 2026
+**Author:** Development Team
 **Status:** Implemented ✅
 
 ---
@@ -438,6 +438,6 @@ The SDK is production-ready and provides a robust, well-documented interface for
 
 ---
 
-**Document Status:** ✅ Complete - All requirements implemented and verified  
-**Last Updated:** January 2026  
+**Document Status:** ✅ Complete - All requirements implemented and verified
+**Last Updated:** January 2026
 **Implementation Version:** 0.1.0

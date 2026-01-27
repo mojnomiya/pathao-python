@@ -1,6 +1,6 @@
 # Pathao Python SDK - Development Guide
 
-**For Contributors and Maintainers**  
+**For Contributors and Maintainers**
 **Status:** Complete Implementation ✅
 
 ---
@@ -368,18 +368,18 @@ tests/
 ```python
 def create_order(self, store_id: int, recipient_name: str) -> Order:
     """Create a new order.
-    
+
     Args:
         store_id: The store ID from which the order is created.
         recipient_name: Name of the order recipient.
-        
+
     Returns:
         Order object containing order details.
-        
+
     Raises:
         ValidationError: If parameters are invalid.
         APIError: If API request fails.
-        
+
     Examples:
         >>> order = client.orders.create(1, "John Doe", ...)
         >>> print(order.consignment_id)
@@ -638,6 +638,6 @@ The modular architecture, extensive testing, and automated CI/CD pipeline ensure
 
 ---
 
-**Guide Status:** ✅ Complete - Reflects current implementation  
-**Last Updated:** January 2026  
+**Guide Status:** ✅ Complete - Reflects current implementation
+**Last Updated:** January 2026
 **SDK Version:** 0.1.0

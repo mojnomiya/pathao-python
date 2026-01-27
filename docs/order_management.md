@@ -53,7 +53,7 @@ orders = [
     },
     {
         "store_id": 123,
-        "merchant_order_id": "BULK-002", 
+        "merchant_order_id": "BULK-002",
         "recipient_name": "Bob Wilson",
         "recipient_phone": "01444555666",
         "recipient_address": "321 Another Street, Dhaka",
@@ -96,7 +96,7 @@ class Order:
     created_at: datetime
     updated_at: datetime
 
-@dataclass  
+@dataclass
 class OrderInfo:
     consignment_id: str
     merchant_order_id: str
@@ -166,7 +166,7 @@ def create_sample_order(client, store_id):
     try:
         # Generate unique order ID
         order_id = f"ORDER-{uuid.uuid4().hex[:8].upper()}"
-        
+
         order = client.orders.create(
             store_id=store_id,
             merchant_order_id=order_id,
@@ -182,15 +182,15 @@ def create_sample_order(client, store_id):
             amount_to_collect=100.0,
             item_description="Sample product delivery"
         )
-        
+
         print(f"✅ Order created: {order.consignment_id}")
-        
+
         # Track the order
         order_info = client.orders.get_info(order.consignment_id)
         print(f"📦 Status: {order_info.order_status}")
-        
+
         return order
-        
+
     except ValidationError as e:
         print(f"❌ Validation error: {e}")
         return None

@@ -83,7 +83,7 @@ def create_sample_order(client, store_id, city_id, zone_id):
             item_description="Sample product - Electronics",
         )
 
-        print(f"✅ Order created successfully!")
+        print("✅ Order created successfully!")
         print(f"   Consignment ID: {order.consignment_id}")
         print(f"   Merchant Order ID: {order.merchant_order_id}")
         print(f"   Status: {order.order_status}")
@@ -109,7 +109,7 @@ def track_order(client, consignment_id):
 
         order_info = client.orders.get_info(consignment_id)
 
-        print(f"✅ Order found:")
+        print("✅ Order found:")
         print(f"   Consignment ID: {order_info.consignment_id}")
         print(f"   Merchant Order ID: {order_info.merchant_order_id}")
         print(f"   Status: {order_info.order_status}")
@@ -132,7 +132,7 @@ def track_order(client, consignment_id):
 
 def demonstrate_validation_errors(client, store_id, city_id, zone_id):
     """Demonstrate common validation errors."""
-    print(f"\n🧪 Demonstrating validation errors...")
+    print("\n🧪 Demonstrating validation errors...")
 
     # Invalid phone number
     try:
@@ -214,12 +214,12 @@ def main():
     # Demonstrate validation errors
     demonstrate_validation_errors(client, store.store_id, city_id, zone_id)
 
-    print(f"\n🎉 Order creation example completed!")
-    print(f"\n📚 What you learned:")
-    print(f"   - How to create orders with proper validation")
-    print(f"   - How to track orders by consignment ID")
-    print(f"   - How to handle validation errors")
-    print(f"   - Order status and delivery fee information")
+    print("\n🎉 Order creation example completed!")
+    print("\n📚 What you learned:")
+    print("   - How to create orders with proper validation")
+    print("   - How to track orders by consignment ID")
+    print("   - How to handle validation errors")
+    print("   - Order status and delivery fee information")
 
 
 if __name__ == "__main__":

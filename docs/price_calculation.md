@@ -34,7 +34,7 @@ if price.cod_enabled:
 ```python
 def compare_delivery_options(client, store_id, weight, city_id, zone_id):
     """Compare normal vs on-demand delivery pricing."""
-    
+
     # Normal delivery (48 hours)
     normal_price = client.prices.calculate(
         store_id=store_id,
@@ -44,7 +44,7 @@ def compare_delivery_options(client, store_id, weight, city_id, zone_id):
         recipient_city=city_id,
         recipient_zone=zone_id
     )
-    
+
     # On-demand delivery (same day)
     ondemand_price = client.prices.calculate(
         store_id=store_id,
@@ -54,12 +54,12 @@ def compare_delivery_options(client, store_id, weight, city_id, zone_id):
         recipient_city=city_id,
         recipient_zone=zone_id
     )
-    
+
     print("📦 Delivery Options:")
     print(f"Normal (48h):   ৳{normal_price.final_price}")
     print(f"On-demand:      ৳{ondemand_price.final_price}")
     print(f"Difference:     ৳{ondemand_price.final_price - normal_price.final_price}")
-    
+
     return normal_price, ondemand_price
 
 # Usage
@@ -76,9 +76,9 @@ normal, ondemand = compare_delivery_options(
 ```python
 def calculate_weight_pricing(client, store_id, city_id, zone_id):
     """Show how weight affects pricing."""
-    
+
     weights = [0.5, 1.0, 2.0, 5.0, 10.0]
-    
+
     print("📊 Weight-based pricing:")
     for weight in weights:
         try:
@@ -167,7 +167,7 @@ def get_delivery_quote(client, store_id, weight, city_id, zone_id):
     try:
         # Calculate for both delivery types
         options = {}
-        
+
         for delivery_type, name in [(48, "Normal"), (12, "Express")]:
             try:
                 price = client.prices.calculate(
@@ -178,7 +178,7 @@ def get_delivery_quote(client, store_id, weight, city_id, zone_id):
                     recipient_city=city_id,
                     recipient_zone=zone_id
                 )
-                
+
                 options[name] = {
                     "base_price": price.price,
                     "discount": price.discount,
@@ -186,12 +186,12 @@ def get_delivery_quote(client, store_id, weight, city_id, zone_id):
                     "cod_available": price.cod_enabled,
                     "cod_fee": price.cod_percentage if price.cod_enabled else 0
                 }
-                
+
             except ValidationError as e:
                 options[name] = {"error": str(e)}
-        
+
         return options
-        
+
     except Exception as e:
         return {"error": f"Failed to get quote: {e}"}
 
@@ -199,18 +199,18 @@ def display_quote(quote):
     """Display pricing quote in user-friendly format."""
     print("💰 Delivery Quote")
     print("=" * 40)
-    
+
     for option, details in quote.items():
         if "error" in details:
             print(f"{option}: ❌ {details['error']}")
             continue
-            
+
         print(f"\n📦 {option} Delivery:")
         print(f"   Base price: ৳{details['base_price']}")
         if details['discount'] > 0:
             print(f"   Discount:   -৳{details['discount']}")
         print(f"   Final price: ৳{details['final_price']}")
-        
+
         if details['cod_available']:
             print(f"   💳 COD available ({details['cod_fee']}% fee)")
         else:
@@ -233,7 +233,7 @@ if stores.data and zones.data:
         city_id=dhaka.city_id,
         zone_id=zones.data[0].zone_id
     )
-    
+
     display_quote(quote)
 ```
 

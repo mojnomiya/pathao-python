@@ -43,10 +43,10 @@ try:
         password="wrong_password",
         environment="sandbox"
     )
-    
+
     # This will trigger authentication
     token = client.get_access_token()
-    
+
 except AuthenticationError as e:
     print(f"❌ Authentication failed: {e}")
     # Handle: Show login form, refresh credentials, etc.
@@ -144,7 +144,7 @@ from pathao import ConfigurationError
 try:
     client = PathaoClient(
         client_id="test_id",
-        client_secret="test_secret", 
+        client_secret="test_secret",
         username="test@example.com",
         password="test_password",
         environment="invalid_env"  # Invalid environment
@@ -159,7 +159,7 @@ except ConfigurationError as e:
 
 ```python
 from pathao import (
-    PathaoClient, 
+    PathaoClient,
     AuthenticationError,
     ValidationError,
     NotFoundError,
@@ -173,35 +173,35 @@ def safe_api_call(func, *args, **kwargs):
     """Wrapper for safe API calls with comprehensive error handling."""
     try:
         return func(*args, **kwargs)
-        
+
     except AuthenticationError as e:
         print(f"🔐 Authentication issue: {e}")
         return {"error": "auth", "message": str(e)}
-        
+
     except ValidationError as e:
         print(f"📝 Validation error: {e}")
         return {"error": "validation", "field": e.field, "message": str(e)}
-        
+
     except NotFoundError as e:
         print(f"🔍 Not found: {e}")
         return {"error": "not_found", "resource": e.resource_type, "message": str(e)}
-        
+
     except APIError as e:
         print(f"🌐 API error: {e}")
         return {"error": "api", "status": e.status_code, "message": str(e)}
-        
+
     except NetworkError as e:
         print(f"📡 Network error: {e}")
         return {"error": "network", "retries": e.retry_count, "message": str(e)}
-        
+
     except ConfigurationError as e:
         print(f"⚙️ Configuration error: {e}")
         return {"error": "config", "key": e.config_key, "message": str(e)}
-        
+
     except PathaoException as e:
         print(f"❌ Pathao error: {e}")
         return {"error": "pathao", "message": str(e)}
-        
+
     except Exception as e:
         print(f"💥 Unexpected error: {e}")
         return {"error": "unexpected", "message": str(e)}
@@ -213,10 +213,10 @@ def create_order_safely(client, order_data):
         client.orders.create,
         **order_data
     )
-    
+
     if isinstance(result, dict) and "error" in result:
         error_type = result["error"]
-        
+
         if error_type == "auth":
             return "Please check your credentials and try again."
         elif error_type == "validation":
@@ -229,7 +229,7 @@ def create_order_safely(client, order_data):
             return "Network connection issue. Please check your internet."
         else:
             return f"Error: {result['message']}"
-    
+
     return result  # Success - return the order object
 
 # Example usage
@@ -268,11 +268,11 @@ def retry_api_call(func, max_retries=3, delay=1, *args, **kwargs):
     for attempt in range(max_retries):
         try:
             return func(*args, **kwargs)
-            
+
         except (NetworkError, APIError) as e:
             if attempt == max_retries - 1:
                 raise  # Last attempt, re-raise the exception
-                
+
             wait_time = delay * (2 ** attempt)  # Exponential backoff
             print(f"⏳ Attempt {attempt + 1} failed, retrying in {wait_time}s...")
             time.sleep(wait_time)

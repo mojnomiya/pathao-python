@@ -293,11 +293,11 @@ Don't ask for everything at once. Build in phases:
    If code needs changes, provide specific feedback:
    ```
    "The generate [Module] is almost right, but:
-   
+
    1. The [method] should [specific requirement]
    2. The error handling for [scenario] should [what to do]
    3. Add validation for [parameter] checking [constraint]
-   
+
    Here's what it should do:
    [paste from docs]"
    ```

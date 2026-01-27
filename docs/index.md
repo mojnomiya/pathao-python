@@ -58,7 +58,7 @@ Manage pickup locations for your orders.
 - List stores with pagination
 - Get store details
 
-### 📦 Order Management  
+### 📦 Order Management
 Create and track delivery orders.
 - Single order creation
 - Bulk order processing
@@ -111,13 +111,13 @@ class PathaoClient:
         password: str = None,
         environment: str = "sandbox"
     )
-    
+
     # Service modules
     stores: StoreModule
     orders: OrderModule
     locations: LocationModule
     prices: PriceModule
-    
+
     # Token management
     def get_access_token() -> str
     def refresh_token() -> None

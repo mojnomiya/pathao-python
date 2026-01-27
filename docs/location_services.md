@@ -95,7 +95,7 @@ except NotFoundError as e:
     print(f"City not found: {e}")
 
 try:
-    areas = client.locations.get_areas(999999)  # Invalid zone ID  
+    areas = client.locations.get_areas(999999)  # Invalid zone ID
 except NotFoundError as e:
     print(f"Zone not found: {e}")
 ```
@@ -111,27 +111,27 @@ def explore_locations(client):
         # Get all cities
         cities = client.locations.get_cities()
         print(f"📍 Found {len(cities.data)} cities")
-        
+
         # Focus on Dhaka
         dhaka = client.locations.get_city_by_name("dhaka")
         if not dhaka:
             print("❌ Dhaka not found")
             return
-            
+
         print(f"\n🏙️  Exploring {dhaka.city_name}")
-        
+
         # Get zones in Dhaka
         zones = client.locations.get_zones(dhaka.city_id)
         print(f"📍 Found {len(zones.data)} zones in Dhaka")
-        
+
         # Explore first few zones
         for zone in zones.data[:3]:
             print(f"\n🏘️  Zone: {zone.zone_name}")
-            
+
             try:
                 areas = client.locations.get_areas(zone.zone_id)
                 print(f"   📍 {len(areas.data)} areas")
-                
+
                 # Show first few areas
                 for area in areas.data[:3]:
                     delivery_info = []
@@ -139,13 +139,13 @@ def explore_locations(client):
                         delivery_info.append("Home Delivery")
                     if area.pickup_available:
                         delivery_info.append("Pickup")
-                    
+
                     services = ", ".join(delivery_info) if delivery_info else "No services"
                     print(f"     - {area.area_name} ({services})")
-                    
+
             except NotFoundError:
                 print(f"     ❌ No areas found for {zone.zone_name}")
-                
+
     except Exception as e:
         print(f"❌ Error exploring locations: {e}")
 
@@ -156,23 +156,23 @@ def get_location_ids(client, city_name="dhaka"):
         city = client.locations.get_city_by_name(city_name)
         if not city:
             return None, None, None
-            
+
         # Get first zone
         zones = client.locations.get_zones(city.city_id)
         if not zones.data:
             return city.city_id, None, None
-            
+
         zone = zones.data[0]
-        
+
         # Get first area
         areas = client.locations.get_areas(zone.zone_id)
         if not areas.data:
             return city.city_id, zone.zone_id, None
-            
+
         area = areas.data[0]
-        
+
         return city.city_id, zone.zone_id, area.area_id
-        
+
     except Exception as e:
         print(f"❌ Error getting location IDs: {e}")
         return None, None, None
