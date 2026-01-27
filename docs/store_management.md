@@ -1,3 +1,9 @@
+---
+layout: page
+title: Store Management
+permalink: /store_management/
+---
+
 # Store Management
 
 ## Overview

@@ -1,8 +1,14 @@
+---
+layout: page
+title: API Reference
+permalink: /api_reference/
+---
+
 # Pathao Python SDK - API Reference
 
 **Version:** 0.1.0
 **Last Updated:** January 2026
-**Status:** Complete Implementation 
+**Status:** Complete Implementation
 
 ---
 
@@ -28,7 +34,7 @@
 
 The Pathao Python SDK provides a clean, Pythonic interface to the Pathao Courier Merchant API. It handles authentication, request/response serialization, error handling, and provides convenient methods for all supported operations.
 
-### Features 
+### Features
 
 -  OAuth 2.0 authentication with automatic token refresh
 -  Type hints throughout the codebase

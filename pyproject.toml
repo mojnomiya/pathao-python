@@ -44,7 +44,7 @@ dev = [
 
 [project.urls]
 Homepage = "https://github.com/mojnomiya/pathao-python"
-Documentation = "https://pathao-python.readthedocs.io"
+Documentation = "https://mojnomiya.github.io/pathao-python/"
 Repository = "https://github.com/mojnomiya/pathao-python.git"
 "Bug Tracker" = "https://github.com/mojnomiya/pathao-python/issues"
 

@@ -1,3 +1,9 @@
+---
+layout: page
+title: Order Management
+permalink: /order_management/
+---
+
 # Order Management
 
 ## Overview

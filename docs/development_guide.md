@@ -1,7 +1,7 @@
 # Pathao Python SDK - Development Guide
 
 **For Contributors and Maintainers**
-**Status:** Complete Implementation 
+**Status:** Complete Implementation
 
 ---
 
@@ -9,7 +9,7 @@
 
 The Pathao Python SDK is a production-ready Python package that provides a comprehensive interface to the Pathao Courier Merchant API. This guide covers the architecture, implementation details, and development workflow for contributors.
 
-### Implementation Status 
+### Implementation Status
 
 -  **Complete Implementation:** All 15 phases completed
 -  **Test Coverage:** 97% with 196 unit tests
@@ -22,7 +22,7 @@ The Pathao Python SDK is a production-ready Python package that provides a compr
 
 ## Project Structure
 
-### Directory Tree 
+### Directory Tree
 
 ```
 pathao-python/
@@ -95,7 +95,7 @@ pathao-python/
 
 ## Architecture Overview
 
-### System Architecture 
+### System Architecture
 
 ```
 ┌─────────────────────────────────────────┐
@@ -160,7 +160,7 @@ pathao-python/
 
 ### Core Components
 
-#### 1. Exception Hierarchy 
+#### 1. Exception Hierarchy
 
 **File:** `pathao/exceptions.py`
 
@@ -180,7 +180,7 @@ PathaoException (base)
 - Field-specific validation error details
 - Retry information for network errors
 
-#### 2. Data Models 
+#### 2. Data Models
 
 **File:** `pathao/models.py`
 
@@ -197,7 +197,7 @@ PathaoException (base)
 - JSON serialization support
 - Validation in `__post_init__` where needed
 
-#### 3. Input Validation 
+#### 3. Input Validation
 
 **File:** `pathao/validators.py`
 
@@ -212,7 +212,7 @@ PathaoException (base)
 - `validate_item_type()` - Enum validation (1, 2)
 - `validate_integer_range()` - Generic range validation
 
-#### 4. HTTP Client 
+#### 4. HTTP Client
 
 **File:** `pathao/http_client.py`
 
@@ -224,7 +224,7 @@ PathaoException (base)
 - Request/response logging (non-sensitive data)
 - Session-based connection pooling
 
-#### 5. Authentication Module 
+#### 5. Authentication Module
 
 **File:** `pathao/modules/auth.py`
 
@@ -235,7 +235,7 @@ PathaoException (base)
 - Intelligent fallback to password grant if refresh fails
 - Thread-safe in-memory token storage
 
-#### 6. Service Modules 
+#### 6. Service Modules
 
 **Store Module** (`pathao/modules/store.py`):
 - Create stores with comprehensive validation
@@ -316,7 +316,7 @@ pre-commit run --all-files
 
 ### Testing Strategy
 
-#### Unit Tests (196 tests, 97% coverage) 
+#### Unit Tests (196 tests, 97% coverage)
 
 **Test Structure:**
 ```
@@ -346,7 +346,7 @@ tests/
 - Error condition testing
 - Integration tests with real sandbox API
 
-#### Integration Tests 
+#### Integration Tests
 
 **Real Sandbox Testing:**
 - Authentication flow validation
@@ -355,7 +355,7 @@ tests/
 - Concurrent operation testing
 - Environment configuration testing
 
-### Code Style Standards 
+### Code Style Standards
 
 #### PEP 8 Compliance
 - 4-space indentation
@@ -388,11 +388,11 @@ def create_order(self, store_id: int, recipient_name: str) -> Order:
 
 ---
 
-## CI/CD Pipeline 
+## CI/CD Pipeline
 
 ### GitHub Actions Workflows
 
-#### 1. Tests Workflow (`.github/workflows/tests.yml`) 
+#### 1. Tests Workflow (`.github/workflows/tests.yml`)
 
 ```yaml
 # Runs on: push, pull_request
@@ -405,7 +405,7 @@ def create_order(self, store_id: int, recipient_name: str) -> Order:
 #   - Coverage upload to Codecov
 ```
 
-#### 2. Quality Workflow (`.github/workflows/quality.yml`) 
+#### 2. Quality Workflow (`.github/workflows/quality.yml`)
 
 ```yaml
 # Runs on: push, pull_request
@@ -415,7 +415,7 @@ def create_order(self, store_id: int, recipient_name: str) -> Order:
 #   - Dependency checking
 ```
 
-#### 3. Publish Workflow (`.github/workflows/publish.yml`) 
+#### 3. Publish Workflow (`.github/workflows/publish.yml`)
 
 ```yaml
 # Runs on: release creation
@@ -425,7 +425,7 @@ def create_order(self, store_id: int, recipient_name: str) -> Order:
 #   - Create GitHub release
 ```
 
-### Pre-commit Hooks 
+### Pre-commit Hooks
 
 **Configuration:** `.pre-commit-config.yaml`
 
@@ -440,7 +440,7 @@ def create_order(self, store_id: int, recipient_name: str) -> Order:
 
 ## Release Management
 
-### Version Strategy 
+### Version Strategy
 
 **Semantic Versioning (MAJOR.MINOR.PATCH):**
 - Current version: `0.1.0` (alpha release)
@@ -451,7 +451,7 @@ def create_order(self, store_id: int, recipient_name: str) -> Order:
 - `pyproject.toml`
 - `pathao/__init__.py`
 
-### Release Process 
+### Release Process
 
 1. **Update version** in all locations
 2. **Update CHANGELOG.md** with new features/fixes
@@ -460,7 +460,7 @@ def create_order(self, store_id: int, recipient_name: str) -> Order:
 5. **Push tag** to trigger automated PyPI publishing
 6. **Create GitHub release** with release notes
 
-### PyPI Publishing 
+### PyPI Publishing
 
 **Automated via GitHub Actions:**
 - Triggered on release creation
@@ -481,7 +481,7 @@ def create_order(self, store_id: int, recipient_name: str) -> Order:
 5. **Run quality checks** locally
 6. **Submit pull request** with clear description
 
-### Pull Request Requirements 
+### Pull Request Requirements
 
 - [ ] All tests passing
 - [ ] Code coverage maintained (>95%)
@@ -490,7 +490,7 @@ def create_order(self, store_id: int, recipient_name: str) -> Order:
 - [ ] CHANGELOG.md updated
 - [ ] Commit messages follow conventional format
 
-### Issue Templates 
+### Issue Templates
 
 **Bug Report Template:**
 - Environment information
@@ -506,7 +506,7 @@ def create_order(self, store_id: int, recipient_name: str) -> Order:
 
 ---
 
-## Security Considerations 
+## Security Considerations
 
 ### Implemented Security Measures
 
@@ -532,7 +532,7 @@ def create_order(self, store_id: int, recipient_name: str) -> Order:
 
 ---
 
-## Performance Considerations 
+## Performance Considerations
 
 ### Optimization Strategies
 

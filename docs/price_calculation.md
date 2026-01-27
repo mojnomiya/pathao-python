@@ -1,3 +1,9 @@
+---
+layout: page
+title: Price Calculation
+permalink: /price_calculation/
+---
+
 # Price Calculation
 
 ## Overview

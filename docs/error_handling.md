@@ -1,3 +1,9 @@
+---
+layout: page
+title: Error Handling
+permalink: /error_handling/
+---
+
 # Error Handling
 
 ## Overview

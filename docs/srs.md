@@ -4,7 +4,7 @@
 **Document Version:** 1.1
 **Date:** January 2026
 **Author:** Development Team
-**Status:** Implemented 
+**Status:** Implemented
 
 ---
 
@@ -18,10 +18,10 @@ This document specifies the requirements for developing a comprehensive Python S
 
 ## 2. Project Overview
 
-### 2.1 Purpose 
+### 2.1 Purpose
 Create a user-friendly Python wrapper around Pathao Courier's REST API that abstracts away HTTP complexities and provides Pythonic interfaces for all Pathao operations.
 
-### 2.2 Scope 
+### 2.2 Scope
 - **Implemented Features:**
   -  Authentication (OAuth 2.0 with automatic token refresh)
   -  Store management (create, list, retrieve)
@@ -42,7 +42,7 @@ Create a user-friendly Python wrapper around Pathao Courier's REST API that abst
   - Advanced analytics features
   - Multi-language documentation
 
-### 2.3 Target Users 
+### 2.3 Target Users
 - Python developers integrating Pathao services
 - E-commerce platforms
 - Logistics management systems
@@ -52,9 +52,9 @@ Create a user-friendly Python wrapper around Pathao Courier's REST API that abst
 
 ## 3. Functional Requirements - Implementation Status
 
-### 3.1 Authentication Module 
+### 3.1 Authentication Module
 
-#### FR-3.1.1: OAuth 2.0 Token Generation 
+#### FR-3.1.1: OAuth 2.0 Token Generation
 - **Status:**  Implemented in `pathao/modules/auth.py`
 - **Implementation:**
   - Password grant flow with client credentials
@@ -62,7 +62,7 @@ Create a user-friendly Python wrapper around Pathao Courier's REST API that abst
   - Automatic refresh token extraction
   - Comprehensive error handling
 
-#### FR-3.1.2: Token Refresh 
+#### FR-3.1.2: Token Refresh
 - **Status:**  Implemented with intelligent refresh logic
 - **Implementation:**
   - Automatic refresh 5 minutes before expiry
@@ -70,7 +70,7 @@ Create a user-friendly Python wrapper around Pathao Courier's REST API that abst
   - Thread-safe token management
   - Proper error handling and logging
 
-#### FR-3.1.3: Automatic Token Management 
+#### FR-3.1.3: Automatic Token Management
 - **Status:**  Implemented with smart lifecycle management
 - **Implementation:**
   - Pre-request token validation
@@ -78,9 +78,9 @@ Create a user-friendly Python wrapper around Pathao Courier's REST API that abst
   - Graceful failure handling
   - No user intervention required
 
-### 3.2 Store Management Module 
+### 3.2 Store Management Module
 
-#### FR-3.2.1: Create Store 
+#### FR-3.2.1: Create Store
 - **Status:**  Implemented in `pathao/modules/store.py`
 - **Implementation:**
   - Complete input validation (name 3-50, phone 11 digits, address 15-120)
@@ -88,7 +88,7 @@ Create a user-friendly Python wrapper around Pathao Courier's REST API that abst
   - Async approval process messaging
   - Proper error handling
 
-#### FR-3.2.2: Retrieve Store Information 
+#### FR-3.2.2: Retrieve Store Information
 - **Status:**  Implemented with pagination support
 - **Implementation:**
   - Paginated store listing (configurable per_page)
@@ -96,7 +96,7 @@ Create a user-friendly Python wrapper around Pathao Courier's REST API that abst
   - Empty list handling
   - Pagination metadata
 
-#### FR-3.2.3: Get Store Details 
+#### FR-3.2.3: Get Store Details
 - **Status:**  Implemented with validation
 - **Implementation:**
   - Store retrieval by ID
@@ -104,9 +104,9 @@ Create a user-friendly Python wrapper around Pathao Courier's REST API that abst
   - NotFoundError for invalid stores
   - Proper error handling
 
-### 3.3 Order Management Module 
+### 3.3 Order Management Module
 
-#### FR-3.3.1: Create Single Order 
+#### FR-3.3.1: Create Single Order
 - **Status:**  Implemented in `pathao/modules/order.py`
 - **Implementation:**
   - Complete parameter validation (13 fields)
@@ -114,7 +114,7 @@ Create a user-friendly Python wrapper around Pathao Courier's REST API that abst
   - Consignment ID and status return
   - Delivery fee calculation
 
-#### FR-3.3.2: Create Bulk Orders 
+#### FR-3.3.2: Create Bulk Orders
 - **Status:**  Implemented with batch processing
 - **Implementation:**
   - Array of order objects support
@@ -122,7 +122,7 @@ Create a user-friendly Python wrapper around Pathao Courier's REST API that abst
   - Async processing (202 response handling)
   - Batch status reporting
 
-#### FR-3.3.3: Get Order Information 
+#### FR-3.3.3: Get Order Information
 - **Status:**  Implemented with tracking support
 - **Implementation:**
   - Order info by consignment ID
@@ -130,9 +130,9 @@ Create a user-friendly Python wrapper around Pathao Courier's REST API that abst
   - Invoice ID support
   - NotFoundError for invalid orders
 
-### 3.4 Location Services Module 
+### 3.4 Location Services Module
 
-#### FR-3.4.1: Get Cities List 
+#### FR-3.4.1: Get Cities List
 - **Status:**  Implemented in `pathao/modules/location.py`
 - **Implementation:**
   - Complete city listing
@@ -140,7 +140,7 @@ Create a user-friendly Python wrapper around Pathao Courier's REST API that abst
   - No authentication required
   - Case-insensitive search support
 
-#### FR-3.4.2: Get Zones in City 
+#### FR-3.4.2: Get Zones in City
 - **Status:**  Implemented with validation
 - **Implementation:**
   - Zone listing by city ID
@@ -148,7 +148,7 @@ Create a user-friendly Python wrapper around Pathao Courier's REST API that abst
   - Complete zone information
   - Proper error handling
 
-#### FR-3.4.3: Get Areas in Zone 
+#### FR-3.4.3: Get Areas in Zone
 - **Status:**  Implemented with service flags
 - **Implementation:**
   - Area listing by zone ID
@@ -156,9 +156,9 @@ Create a user-friendly Python wrapper around Pathao Courier's REST API that abst
   - Zone ID validation
   - Complete area details
 
-### 3.5 Price Calculation Module 
+### 3.5 Price Calculation Module
 
-#### FR-3.5.1: Calculate Delivery Price 
+#### FR-3.5.1: Calculate Delivery Price
 - **Status:**  Implemented in `pathao/modules/price.py`
 - **Implementation:**
   - Complete price breakdown (base, discount, promo, COD)
@@ -166,9 +166,9 @@ Create a user-friendly Python wrapper around Pathao Courier's REST API that abst
   - Delivery type support (Normal, OnDemand)
   - Weight-based pricing (0.5-10 kg)
 
-### 3.6 Error Handling and Validation 
+### 3.6 Error Handling and Validation
 
-#### FR-3.6.1: Input Validation 
+#### FR-3.6.1: Input Validation
 - **Status:**  Implemented in `pathao/validators.py`
 - **Implementation:**
   - String length validation
@@ -177,7 +177,7 @@ Create a user-friendly Python wrapper around Pathao Courier's REST API that abst
   - Enum value validation
   - Custom ValidationError with field details
 
-#### FR-3.6.2: API Error Handling 
+#### FR-3.6.2: API Error Handling
 - **Status:**  Implemented with custom exception hierarchy
 - **Implementation:**
   - Custom exception classes (7 types)
@@ -185,7 +185,7 @@ Create a user-friendly Python wrapper around Pathao Courier's REST API that abst
   - Status code preservation
   - Debug-friendly error information
 
-#### FR-3.6.3: Network Error Handling 
+#### FR-3.6.3: Network Error Handling
 - **Status:**  Implemented in `pathao/http_client.py`
 - **Implementation:**
   - Connection timeout handling
@@ -197,35 +197,35 @@ Create a user-friendly Python wrapper around Pathao Courier's REST API that abst
 
 ## 4. Non-Functional Requirements - Implementation Status
 
-### 4.1 Performance 
+### 4.1 Performance
 - **NFR-4.1.1:**  API responses processed efficiently with proper timeout handling
 - **NFR-4.1.2:**  Location data can be cached (implementation ready)
 - **NFR-4.1.3:**  Bulk order creation supports large batches
 
-### 4.2 Reliability 
+### 4.2 Reliability
 - **NFR-4.2.1:**  High success rate with comprehensive error handling
 - **NFR-4.2.2:**  Automatic token refresh prevents auth failures
 - **NFR-4.2.3:**  Graceful recovery from transient failures with retry logic
 
-### 4.3 Usability 
+### 4.3 Usability
 - **NFR-4.3.1:**  Follows Python best practices and PEP 8 standards
 - **NFR-4.3.2:**  Comprehensive docstrings for all public methods
 - **NFR-4.3.3:**  Type hints throughout the codebase
 - **NFR-4.3.4:**  Clear and actionable error messages
 
-### 4.4 Security 
+### 4.4 Security
 - **NFR-4.4.1:**  Credentials masked in logs with SensitiveDataFormatter
 - **NFR-4.4.2:**  HTTPS-only communication
 - **NFR-4.4.3:**  Secure in-memory token handling
 - **NFR-4.4.4:**  SSL certificate validation enabled
 
-### 4.5 Maintainability 
+### 4.5 Maintainability
 - **NFR-4.5.1:**  97% test coverage achieved (target: 80%+)
 - **NFR-4.5.2:**  Complex functions documented with clear comments
 - **NFR-4.5.3:**  Python 3.8+ compatibility tested
 - **NFR-4.5.4:**  Minimal dependencies (requests, python-dotenv)
 
-### 4.6 Documentation 
+### 4.6 Documentation
 - **NFR-4.6.1:**  Comprehensive README with quick start guide
 - **NFR-4.6.2:**  Complete API reference documentation
 - **NFR-4.6.3:**  Multiple examples for different use cases
@@ -235,7 +235,7 @@ Create a user-friendly Python wrapper around Pathao Courier's REST API that abst
 
 ## 5. System Architecture - Implementation
 
-### 5.1 Implemented Architecture 
+### 5.1 Implemented Architecture
 
 ```
 ┌─────────────────────────────────────────┐
@@ -280,7 +280,7 @@ Create a user-friendly Python wrapper around Pathao Courier's REST API that abst
 └─────────────────────────────────────────┘
 ```
 
-### 5.2 Implemented Directory Structure 
+### 5.2 Implemented Directory Structure
 
 ```
 pathao-python/
@@ -341,33 +341,33 @@ pathao-python/
 
 ## 6. Technical Specifications - Implementation
 
-### 6.1 Technology Stack 
-- **Language:** Python 3.8+ 
-- **HTTP Client:** requests library 
-- **Data Serialization:** JSON 
-- **Testing:** pytest (196 tests, 97% coverage) 
-- **Documentation:** Markdown documentation 
-- **Package Management:** pip/setuptools 
-- **Version Control:** Git 
-- **CI/CD:** GitHub Actions 
+### 6.1 Technology Stack
+- **Language:** Python 3.8+
+- **HTTP Client:** requests library
+- **Data Serialization:** JSON
+- **Testing:** pytest (196 tests, 97% coverage)
+- **Documentation:** Markdown documentation
+- **Package Management:** pip/setuptools
+- **Version Control:** Git
+- **CI/CD:** GitHub Actions
 
-### 6.2 Dependencies 
-- `requests>=2.28.0` - HTTP client 
-- `python-dotenv>=0.21.0` - Environment management 
+### 6.2 Dependencies
+- `requests>=2.28.0` - HTTP client
+- `python-dotenv>=0.21.0` - Environment management
 
-### 6.3 Development Dependencies 
-- `pytest>=7.0` - Testing framework 
-- `pytest-cov>=4.0` - Coverage reporting 
-- `pytest-mock>=3.10` - Mocking utilities 
-- `black>=22.0` - Code formatting 
-- `flake8>=4.0` - Linting 
-- `mypy>=0.990` - Type checking 
+### 6.3 Development Dependencies
+- `pytest>=7.0` - Testing framework
+- `pytest-cov>=4.0` - Coverage reporting
+- `pytest-mock>=3.10` - Mocking utilities
+- `black>=22.0` - Code formatting
+- `flake8>=4.0` - Linting
+- `mypy>=0.990` - Type checking
 
 ---
 
 ## 7. Implementation Summary
 
-### 7.1 Completed Features 
+### 7.1 Completed Features
 
 **Core Infrastructure:**
 -  Exception hierarchy (7 custom exceptions)
@@ -408,7 +408,7 @@ pathao-python/
 -  Complete API reference
 -  Contributing guidelines and community standards
 
-### 7.2 Success Metrics Achieved 
+### 7.2 Success Metrics Achieved
 
 -  Package structure complete and organized
 -  97% test coverage (exceeded 80% target)
