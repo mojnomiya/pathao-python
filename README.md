@@ -1,21 +1,23 @@
 # Pathao Python SDK
 
-[![Tests](https://github.com/yourusername/pathao-python/workflows/Tests/badge.svg)](https://github.com/yourusername/pathao-python/actions)
+[![Tests](https://github.com/mojnomiya/pathao-python/workflows/Tests/badge.svg)](https://github.com/mojnomiya/pathao-python/actions)
+[![Code Quality](https://github.com/mojnomiya/pathao-python/workflows/Code%20Quality/badge.svg)](https://github.com/mojnomiya/pathao-python/actions)
 [![PyPI version](https://badge.fury.io/py/pathao.svg)](https://badge.fury.io/py/pathao)
 [![Python versions](https://img.shields.io/pypi/pyversions/pathao.svg)](https://pypi.org/project/pathao/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Documentation](https://img.shields.io/badge/docs-GitHub%20Pages-blue)](https://mojnomiya.github.io/pathao-python/)
 
 A comprehensive Python SDK for the Pathao Courier Merchant API. This package provides a clean, Pythonic interface to integrate Pathao's courier services into your Python applications.
 
 ## Features
 
-- ✅ OAuth 2.0 authentication with automatic token refresh
-- ✅ Type hints throughout the codebase
-- ✅ Comprehensive input validation
-- ✅ Detailed error messages
-- ✅ Support for both Sandbox and Production environments
-- ✅ Batch operations support
-- ✅ Extensive documentation and examples
+-  OAuth 2.0 authentication with automatic token refresh
+-  Type hints throughout the codebase
+-  Comprehensive input validation
+-  Detailed error messages
+-  Support for both Sandbox and Production environments
+-  Batch operations support
+-  Extensive documentation and examples
 
 ## Installation
 
@@ -55,13 +57,15 @@ print(f"Order created: {order.consignment_id}")
 
 ## Documentation
 
-- [Installation Guide](docs/installation.md)
-- [Authentication](docs/authentication.md)
-- [Store Management](docs/store_management.md)
-- [Order Management](docs/order_management.md)
-- [Location Services](docs/location_services.md)
-- [Price Calculation](docs/price_calculation.md)
-- [Error Handling](docs/error_handling.md)
+- [📚 **Complete Documentation**](https://mojnomiya.github.io/pathao-python/)
+- [Installation Guide](https://mojnomiya.github.io/pathao-python/installation/)
+- [Authentication](https://mojnomiya.github.io/pathao-python/authentication/)
+- [Store Management](https://mojnomiya.github.io/pathao-python/store_management/)
+- [Order Management](https://mojnomiya.github.io/pathao-python/order_management/)
+- [Location Services](https://mojnomiya.github.io/pathao-python/location_services/)
+- [Price Calculation](https://mojnomiya.github.io/pathao-python/price_calculation/)
+- [Error Handling](https://mojnomiya.github.io/pathao-python/error_handling/)
+- [API Reference](https://mojnomiya.github.io/pathao-python/api_reference/)
 
 ## Requirements
 
@@ -73,7 +77,7 @@ print(f"Order created: {order.consignment_id}")
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/pathao-python.git
+git clone https://github.com/mojnomiya/pathao-python.git
 cd pathao-python
 
 # Install development dependencies
@@ -99,8 +103,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Support
 
-- [GitHub Issues](https://github.com/yourusername/pathao-python/issues)
-- [Documentation](https://pathao-python.readthedocs.io)
+- [GitHub Issues](https://github.com/mojnomiya/pathao-python/issues)
+- [Documentation](https://mojnomiya.github.io/pathao-python/)
 
 ## Changelog
 

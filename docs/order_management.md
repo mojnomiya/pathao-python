@@ -183,7 +183,7 @@ def create_sample_order(client, store_id):
             item_description="Sample product delivery"
         )
 
-        print(f"✅ Order created: {order.consignment_id}")
+        print(f" Order created: {order.consignment_id}")
 
         # Track the order
         order_info = client.orders.get_info(order.consignment_id)

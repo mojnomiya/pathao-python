@@ -140,7 +140,7 @@ def setup_store(client):
             area_id=areas.data[0].area_id
         )
 
-        print(f"✅ Store created: {store.store_name} (ID: {store.store_id})")
+        print(f" Store created: {store.store_name} (ID: {store.store_id})")
         return store
 
     except ValidationError as e:

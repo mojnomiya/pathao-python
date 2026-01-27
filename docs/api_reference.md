@@ -2,7 +2,7 @@
 
 **Version:** 0.1.0
 **Last Updated:** January 2026
-**Status:** Complete Implementation ✅
+**Status:** Complete Implementation 
 
 ---
 
@@ -28,17 +28,17 @@
 
 The Pathao Python SDK provides a clean, Pythonic interface to the Pathao Courier Merchant API. It handles authentication, request/response serialization, error handling, and provides convenient methods for all supported operations.
 
-### Features ✅
+### Features 
 
-- ✅ OAuth 2.0 authentication with automatic token refresh
-- ✅ Type hints throughout the codebase
-- ✅ Comprehensive input validation
-- ✅ Detailed error messages with custom exception hierarchy
-- ✅ Support for both Sandbox and Production environments
-- ✅ Batch operations support
-- ✅ Exponential backoff retry logic
-- ✅ Secure logging with sensitive data masking
-- ✅ 97% test coverage with 196 unit tests
+-  OAuth 2.0 authentication with automatic token refresh
+-  Type hints throughout the codebase
+-  Comprehensive input validation
+-  Detailed error messages with custom exception hierarchy
+-  Support for both Sandbox and Production environments
+-  Batch operations support
+-  Exponential backoff retry logic
+-  Secure logging with sensitive data masking
+-  97% test coverage with 196 unit tests
 
 ---
 
@@ -1015,6 +1015,6 @@ except PathaoException as e:
 
 ---
 
-**Documentation Status:** ✅ Complete - Reflects current implementation
+**Documentation Status:**  Complete - Reflects current implementation
 **Last Updated:** January 2026
 **SDK Version:** 0.1.0

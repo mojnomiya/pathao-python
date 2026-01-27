@@ -49,7 +49,7 @@ try:
         password="test",
         environment="sandbox"
     )
-    print("✅ Installation successful!")
+    print(" Installation successful!")
 except Exception as e:
     print(f"❌ Installation issue: {e}")
 ```

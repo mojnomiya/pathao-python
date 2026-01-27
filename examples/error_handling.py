@@ -40,7 +40,7 @@ def demonstrate_authentication_error():
         _ = client.get_access_token()
 
     except AuthenticationError as e:
-        print(f"✅ Caught AuthenticationError: {e}")
+        print(f" Caught AuthenticationError: {e}")
         print("💡 Solution: Check your credentials")
         return "auth_error"
 
@@ -84,7 +84,7 @@ def demonstrate_validation_errors(client):
             print(f"❌ Expected validation error for: {test['name']}")
 
         except ValidationError as e:
-            print(f"✅ Caught ValidationError for {test['name']}: {e}")
+            print(f" Caught ValidationError for {test['name']}: {e}")
             if hasattr(e, "field"):
                 print(f"   Field: {e.field}")
             if hasattr(e, "value"):
@@ -113,7 +113,7 @@ def demonstrate_not_found_errors(client):
             print(f"❌ Expected not found error for: {test['name']}")
 
         except NotFoundError as e:
-            print(f"✅ Caught NotFoundError for {test['name']}: {e}")
+            print(f" Caught NotFoundError for {test['name']}: {e}")
             if hasattr(e, "resource_type"):
                 print(f"   Resource type: {e.resource_type}")
             if hasattr(e, "resource_id"):
@@ -135,7 +135,7 @@ def demonstrate_configuration_error():
         print("❌ Expected configuration error")
 
     except ConfigurationError as e:
-        print(f"✅ Caught ConfigurationError: {e}")
+        print(f" Caught ConfigurationError: {e}")
         if hasattr(e, "config_key"):
             print(f"   Config key: {e.config_key}")
 
@@ -232,7 +232,7 @@ def demonstrate_safe_api_calls(client):
     # Test successful call
     result = safe_api_call(client.locations.get_cities)
     if result["success"]:
-        print(f"✅ Successful API call: Got {len(result['data'].data)} cities")
+        print(f" Successful API call: Got {len(result['data'].data)} cities")
     else:
         print(f"❌ API call failed: {result['message']}")
 
@@ -249,7 +249,7 @@ def demonstrate_safe_api_calls(client):
     )
 
     if not result["success"] and result["error_type"] == "validation":
-        print(f"✅ Validation error handled: {result['message']}")
+        print(f" Validation error handled: {result['message']}")
         if result["field"]:
             print(f"   Problem field: {result['field']}")
 
@@ -261,7 +261,7 @@ def demonstrate_retry_logic(client):
     try:
         # This should work normally
         cities = retry_with_backoff(client.locations.get_cities, max_retries=2)
-        print(f"✅ Retry logic test passed: Got {len(cities.data)} cities")
+        print(f" Retry logic test passed: Got {len(cities.data)} cities")
 
     except Exception as e:
         print(f"❌ Retry logic failed: {e}")
@@ -287,7 +287,7 @@ def main():
             password=os.getenv("PATHAO_PASSWORD", "your_password"),
             environment="sandbox",
         )
-        print("\n✅ Valid client initialized for testing")
+        print("\n Valid client initialized for testing")
 
         # Test validation errors
         demonstrate_validation_errors(client)

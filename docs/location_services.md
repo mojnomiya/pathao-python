@@ -186,7 +186,7 @@ explore_locations(client)
 # Get IDs for store creation
 city_id, zone_id, area_id = get_location_ids(client)
 if all([city_id, zone_id, area_id]):
-    print(f"\n✅ Location IDs - City: {city_id}, Zone: {zone_id}, Area: {area_id}")
+    print(f"\n Location IDs - City: {city_id}, Zone: {zone_id}, Area: {area_id}")
 ```
 
 ## Best Practices

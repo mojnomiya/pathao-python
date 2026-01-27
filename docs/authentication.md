@@ -143,7 +143,7 @@ def create_pathao_client():
 
         # Test authentication
         token = client.get_access_token()
-        print("✅ Authentication successful")
+        print(" Authentication successful")
 
         return client
 

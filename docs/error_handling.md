@@ -254,7 +254,7 @@ result = create_order_safely(client, order_data)
 if isinstance(result, str):
     print(f"❌ {result}")  # Error message
 else:
-    print(f"✅ Order created: {result.consignment_id}")
+    print(f" Order created: {result.consignment_id}")
 ```
 
 ## Retry Logic
@@ -280,7 +280,7 @@ def retry_api_call(func, max_retries=3, delay=1, *args, **kwargs):
 # Usage
 try:
     cities = retry_api_call(client.locations.get_cities)
-    print(f"✅ Got {len(cities.data)} cities")
+    print(f" Got {len(cities.data)} cities")
 except Exception as e:
     print(f"❌ All retry attempts failed: {e}")
 ```

@@ -16,7 +16,7 @@ A comprehensive Python SDK for the Pathao Courier Merchant API. This package pro
 
 - 🔐 **OAuth 2.0 Authentication** - Automatic token refresh
 - 🎯 **Type Hints** - Full type safety throughout
-- ✅ **Input Validation** - Comprehensive validation with detailed error messages
+-  **Input Validation** - Comprehensive validation with detailed error messages
 - 🌍 **Multi-Environment** - Support for Sandbox and Production
 - 📦 **Batch Operations** - Efficient bulk operations
 - 📚 **Extensive Documentation** - Complete guides and examples

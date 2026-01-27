@@ -20,7 +20,7 @@ def get_or_create_store(client):
         stores = client.stores.list()
         if stores.data:
             store = stores.data[0]
-            print(f"✅ Using existing store: {store.store_name} (ID: {store.store_id})")
+            print(f" Using existing store: {store.store_name} (ID: {store.store_id})")
             return store
         else:
             print("❌ No stores found. Please create a store first.")
@@ -50,7 +50,7 @@ def get_location_data(client):
             return dhaka.city_id, None
 
         zone = zones.data[0]
-        print(f"✅ Using location: {dhaka.city_name} > {zone.zone_name}")
+        print(f" Using location: {dhaka.city_name} > {zone.zone_name}")
 
         return dhaka.city_id, zone.zone_id
 
@@ -83,7 +83,7 @@ def create_sample_order(client, store_id, city_id, zone_id):
             item_description="Sample product - Electronics",
         )
 
-        print("✅ Order created successfully!")
+        print(" Order created successfully!")
         print(f"   Consignment ID: {order.consignment_id}")
         print(f"   Merchant Order ID: {order.merchant_order_id}")
         print(f"   Status: {order.order_status}")
@@ -109,7 +109,7 @@ def track_order(client, consignment_id):
 
         order_info = client.orders.get_info(consignment_id)
 
-        print("✅ Order found:")
+        print(" Order found:")
         print(f"   Consignment ID: {order_info.consignment_id}")
         print(f"   Merchant Order ID: {order_info.merchant_order_id}")
         print(f"   Status: {order_info.order_status}")
@@ -151,7 +151,7 @@ def demonstrate_validation_errors(client, store_id, city_id, zone_id):
             amount_to_collect=0,
         )
     except ValidationError as e:
-        print(f"✅ Caught phone validation error: {e}")
+        print(f" Caught phone validation error: {e}")
 
     # Invalid weight
     try:
@@ -170,7 +170,7 @@ def demonstrate_validation_errors(client, store_id, city_id, zone_id):
             amount_to_collect=0,
         )
     except ValidationError as e:
-        print(f"✅ Caught weight validation error: {e}")
+        print(f" Caught weight validation error: {e}")
 
 
 def main():
@@ -187,7 +187,7 @@ def main():
             password=os.getenv("PATHAO_PASSWORD", "your_password"),
             environment="sandbox",
         )
-        print("✅ Client initialized")
+        print(" Client initialized")
 
     except Exception as e:
         print(f"❌ Failed to initialize client: {e}")

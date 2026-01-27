@@ -27,7 +27,7 @@ def main():
             password=os.getenv("PATHAO_PASSWORD", "your_password"),
             environment="sandbox",  # Use "production" for live
         )
-        print("✅ Client initialized successfully")
+        print(" Client initialized successfully")
 
     except Exception as e:
         print(f"❌ Failed to initialize client: {e}")
@@ -36,7 +36,7 @@ def main():
     # Test authentication
     try:
         token = client.get_access_token()
-        print("✅ Authentication successful")
+        print(" Authentication successful")
         print(f"🔑 Token: {token[:20]}...")
 
     except AuthenticationError as e:
@@ -52,7 +52,7 @@ def main():
     try:
         print("\n📍 Getting cities...")
         cities = client.locations.get_cities()
-        print(f"✅ Found {len(cities.data)} cities")
+        print(f" Found {len(cities.data)} cities")
 
         for city in cities.data[:5]:  # Show first 5
             print(f"   - {city.city_name} (ID: {city.city_id})")
@@ -64,7 +64,7 @@ def main():
     try:
         print("\n🏪 Getting stores...")
         stores = client.stores.list()
-        print(f"✅ Found {len(stores.data)} stores")
+        print(f" Found {len(stores.data)} stores")
 
         for store in stores.data[:3]:  # Show first 3
             print(f"   - {store.store_name} (ID: {store.store_id})")
@@ -94,7 +94,7 @@ def main():
                     recipient_zone=zones.data[0].zone_id,
                 )
 
-                print("✅ Price calculated:")
+                print(" Price calculated:")
                 print(f"   Base price: ৳{price.price}")
                 print(f"   Final price: ৳{price.final_price}")
                 print(f"   COD available: {price.cod_enabled}")

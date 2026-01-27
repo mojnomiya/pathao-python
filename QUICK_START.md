@@ -441,7 +441,7 @@ python -m twine check dist/*
 
 ---
 
-## ✅ Sign-Off Checklist
+##  Sign-Off Checklist
 
 Before publishing to PyPI, ensure:
 
