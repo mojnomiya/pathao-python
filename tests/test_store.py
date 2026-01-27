@@ -1,7 +1,7 @@
 """Tests for store management module."""
 
 import pytest
-from unittest.mock import Mock, patch
+from unittest.mock import Mock
 
 from pathao.exceptions import ValidationError, NotFoundError, APIError
 from pathao.models import Store, StoreList
