@@ -182,7 +182,9 @@ def main():
     try:
         client = PathaoClient(
             client_id=os.getenv("PATHAO_CLIENT_ID", "7N1aMJQbWm"),
-            client_secret=os.getenv("PATHAO_CLIENT_SECRET", "wRcaibZkUdSNz2EI9ZyuXLlNrnAv0TdPUPXMnD39"),
+            client_secret=os.getenv(
+                "PATHAO_CLIENT_SECRET", "wRcaibZkUdSNz2EI9ZyuXLlNrnAv0TdPUPXMnD39"
+            ),
             username=os.getenv("PATHAO_USERNAME", "test@pathao.com"),
             password=os.getenv("PATHAO_PASSWORD", "lovePathao"),
             environment="sandbox",

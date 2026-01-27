@@ -102,7 +102,7 @@ class OrderModule:
             order_data = response["data"]
         else:
             order_data = response
-            
+
         return Order(
             consignment_id=order_data["consignment_id"],
             merchant_order_id=order_data["merchant_order_id"],
@@ -199,7 +199,7 @@ class OrderModule:
                 order_data = response["data"]
             else:
                 order_data = response
-                
+
             return OrderInfo(
                 consignment_id=order_data["consignment_id"],
                 merchant_order_id=order_data["merchant_order_id"],
