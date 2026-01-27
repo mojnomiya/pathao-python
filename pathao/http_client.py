@@ -214,7 +214,7 @@ class HTTPClient:
 
         # Retry on server errors (5xx)
         if isinstance(exception, HTTPError):
-            return exception.response.status_code >= 500
+            return bool(exception.response.status_code >= 500)
 
         # Retry on general request exceptions
         if isinstance(exception, RequestException):
