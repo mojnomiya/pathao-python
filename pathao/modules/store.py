@@ -87,13 +87,9 @@ class StoreModule:
         # Get access token
         token = self.auth_module.get_access_token()
 
-        # Prepare request
-        headers = {"Authorization": f"Bearer {token}"}
-        params = {"page": page, "per_page": per_page}
-
         # Make API request
         response = self.http_client.get(
-            f"aladdin/api/v1/stores", headers, {"page": page, "per_page": per_page}
+            "aladdin/api/v1/stores", headers, {"page": page, "per_page": per_page}
         )
 
         # Parse response

@@ -10,7 +10,7 @@ This example demonstrates:
 """
 
 import os
-from pathao import PathaoClient, AuthenticationError, ValidationError
+from pathao import PathaoClient, AuthenticationError
 
 
 def main():
@@ -36,7 +36,7 @@ def main():
     # Test authentication
     try:
         token = client.get_access_token()
-        print(f"✅ Authentication successful")
+        print("✅ Authentication successful")
         print(f"🔑 Token: {token[:20]}...")
 
     except AuthenticationError as e:
@@ -94,7 +94,7 @@ def main():
                     recipient_zone=zones.data[0].zone_id,
                 )
 
-                print(f"✅ Price calculated:")
+                print("✅ Price calculated:")
                 print(f"   Base price: ৳{price.price}")
                 print(f"   Final price: ৳{price.final_price}")
                 print(f"   COD available: {price.cod_enabled}")

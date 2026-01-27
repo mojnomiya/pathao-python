@@ -6,12 +6,12 @@ with open("README.md", "r", encoding="utf-8") as fh:
 setup(
     name="pathao",
     version="0.1.0",
-    author="Your Name",
+    author="Md Mojno Miya",
     author_email="your.email@example.com",
     description="Python SDK for Pathao Courier Merchant API",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/pathao-python",
+    url="https://github.com/mojnomiya/pathao-python",
     packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
