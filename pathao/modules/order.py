@@ -96,14 +96,20 @@ class OrderModule:
         response = self.http_client.post("aladdin/api/v1/orders", headers, data)
 
         # Parse response
-        order_data = response["data"]["data"]
+        if "data" in response and "data" in response["data"]:
+            order_data = response["data"]["data"]
+        elif "data" in response:
+            order_data = response["data"]
+        else:
+            order_data = response
+            
         return Order(
             consignment_id=order_data["consignment_id"],
             merchant_order_id=order_data["merchant_order_id"],
             order_status=order_data["order_status"],
             delivery_fee=float(order_data["delivery_fee"]),
-            created_at=order_data["created_at"],
-            updated_at=order_data["updated_at"],
+            created_at=order_data.get("created_at", ""),
+            updated_at=order_data.get("updated_at", ""),
         )
 
     def create_bulk(self, orders: List[dict]) -> BulkOrderResponse:
@@ -183,11 +189,17 @@ class OrderModule:
         try:
             # Make API request
             response = self.http_client.get(
-                f"aladdin/api/v1/orders/{consignment_id}", headers
+                f"aladdin/api/v1/orders/{consignment_id}/info", headers
             )
 
             # Parse response
-            order_data = response["data"]
+            if "data" in response and "data" in response["data"]:
+                order_data = response["data"]["data"]
+            elif "data" in response:
+                order_data = response["data"]
+            else:
+                order_data = response
+                
             return OrderInfo(
                 consignment_id=order_data["consignment_id"],
                 merchant_order_id=order_data["merchant_order_id"],

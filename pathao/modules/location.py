@@ -23,11 +23,22 @@ class LocationModule:
         token = self.auth_module.get_access_token()
         headers = {"Authorization": f"Bearer {token}"}
 
-        response = self.http_client.get("aladdin/api/v1/cities", headers)
+        response = self.http_client.get("aladdin/api/v1/city-list", headers)
+
+        # Handle different response structures
+        if "data" in response and "data" in response["data"]:
+            # Nested data structure
+            city_data = response["data"]["data"]
+        elif "data" in response:
+            # Direct data structure
+            city_data = response["data"]
+        else:
+            # Response is the data itself
+            city_data = response
 
         cities = [
             City(city_id=city["city_id"], city_name=city["city_name"])
-            for city in response["data"]["data"]
+            for city in city_data
         ]
 
         return CityList(data=cities)
@@ -45,9 +56,17 @@ class LocationModule:
                 f"aladdin/api/v1/cities/{city_id}/zone-list", headers
             )
 
+            # Handle different response structures
+            if "data" in response and "data" in response["data"]:
+                zone_data = response["data"]["data"]
+            elif "data" in response:
+                zone_data = response["data"]
+            else:
+                zone_data = response
+
             zones = [
                 Zone(zone_id=zone["zone_id"], zone_name=zone["zone_name"])
-                for zone in response["data"]["data"]
+                for zone in zone_data
             ]
 
             return ZoneList(data=zones)
@@ -69,6 +88,14 @@ class LocationModule:
                 f"aladdin/api/v1/zones/{zone_id}/area-list", headers
             )
 
+            # Handle different response structures
+            if "data" in response and "data" in response["data"]:
+                area_data = response["data"]["data"]
+            elif "data" in response:
+                area_data = response["data"]
+            else:
+                area_data = response
+
             areas = [
                 Area(
                     area_id=area["area_id"],
@@ -76,7 +103,7 @@ class LocationModule:
                     home_delivery_available=area["home_delivery_available"],
                     pickup_available=area["pickup_available"],
                 )
-                for area in response["data"]["data"]
+                for area in area_data
             ]
 
             return AreaList(data=areas)

@@ -56,10 +56,16 @@ class PriceModule:
         }
 
         # Make API request
-        response = self.http_client.post("aladdin/api/v1/price-plan", headers, data)
+        response = self.http_client.post("aladdin/api/v1/merchant/price-plan", headers, data)
 
         # Parse response
-        price_data = response["data"]
+        if "data" in response and "data" in response["data"]:
+            price_data = response["data"]["data"]
+        elif "data" in response:
+            price_data = response["data"]
+        else:
+            price_data = response
+            
         return PriceDetails(
             price=float(price_data["price"]),
             discount=float(price_data["discount"]),
