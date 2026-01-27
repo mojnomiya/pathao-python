@@ -1,3 +1,9 @@
+---
+layout: page
+title: Authentication
+permalink: /authentication/
+---
+
 # Authentication Guide
 
 ## Overview

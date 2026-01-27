@@ -1,13 +1,36 @@
 ---
-layout: default
+layout: home
 title: Home
 ---
 
-# Pathao Python SDK Documentation
+# Pathao Python SDK
 
-Welcome to the comprehensive documentation for the Pathao Python SDK. This SDK provides a clean, Pythonic interface to integrate Pathao's courier services into your Python applications.
+[![Tests](https://github.com/mojnomiya/pathao-python/workflows/Tests/badge.svg)](https://github.com/mojnomiya/pathao-python/actions)
+[![PyPI version](https://badge.fury.io/py/pathao.svg)](https://badge.fury.io/py/pathao)
+[![Python versions](https://img.shields.io/pypi/pyversions/pathao.svg)](https://pypi.org/project/pathao/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Quick Start
+A comprehensive Python SDK for the Pathao Courier Merchant API. This package provides a clean, Pythonic interface to integrate Pathao's courier services into your Python applications.
+
+## ✨ Features
+
+- 🔐 **OAuth 2.0 Authentication** - Automatic token refresh
+- 🎯 **Type Hints** - Full type safety throughout
+- ✅ **Input Validation** - Comprehensive validation with detailed error messages
+- 🌍 **Multi-Environment** - Support for Sandbox and Production
+- 📦 **Batch Operations** - Efficient bulk operations
+- 📚 **Extensive Documentation** - Complete guides and examples
+- 🧪 **97% Test Coverage** - Thoroughly tested codebase
+
+## 🚀 Quick Start
+
+### Installation
+
+```bash
+pip install pathao
+```
+
+### Basic Usage
 
 ```python
 from pathao import PathaoClient
@@ -24,14 +47,11 @@ client = PathaoClient(
 # Create an order
 order = client.orders.create(
     store_id=1,
-    merchant_order_id="ORDER-001",
     recipient_name="John Doe",
     recipient_phone="01712345678",
     recipient_address="House 123, Road 4, Dhaka",
-    recipient_city=1,
-    recipient_zone=1,
     delivery_type=48,  # Normal delivery
-    item_type=2,       # Parcel
+    item_type=2,  # Parcel
     item_quantity=1,
     item_weight=0.5,
     amount_to_collect=0
@@ -40,147 +60,43 @@ order = client.orders.create(
 print(f"Order created: {order.consignment_id}")
 ```
 
-## Features
+## 📖 Documentation
 
-- ✅ **OAuth 2.0 Authentication** - Automatic token management and refresh
-- ✅ **Type Hints** - Full type annotations throughout the codebase
-- ✅ **Input Validation** - Comprehensive validation with detailed error messages
-- ✅ **Error Handling** - Specific exception types for different error scenarios
-- ✅ **Environment Support** - Both Sandbox and Production environments
-- ✅ **Retry Logic** - Automatic retry with exponential backoff for network issues
-- ✅ **Comprehensive Testing** - 196+ unit tests with integration test support
+| Guide | Description |
+|-------|-------------|
+| [Installation](installation.html) | Installation and setup instructions |
+| [Authentication](authentication.html) | OAuth 2.0 authentication setup |
+| [Store Management](store_management.html) | Managing your stores |
+| [Order Management](order_management.html) | Creating and managing orders |
+| [Location Services](location_services.html) | Working with cities, zones, and areas |
+| [Price Calculation](price_calculation.html) | Calculating delivery prices |
+| [Error Handling](error_handling.html) | Handling errors and exceptions |
+| [API Reference](api_reference.html) | Complete API documentation |
 
-## API Modules
+## 🛠️ Requirements
 
-### 🏪 Store Management
-Manage pickup locations for your orders.
-- Create stores with location validation
-- List stores with pagination
-- Get store details
+- Python 3.8 or higher
+- `requests>=2.28.0`
+- `python-dotenv>=0.21.0`
 
-### 📦 Order Management
-Create and track delivery orders.
-- Single order creation
-- Bulk order processing
-- Order tracking and status updates
+## 📊 Project Stats
 
-### 📍 Location Services
-Access city, zone, and area information.
-- Get all cities
-- Get zones by city
-- Get areas by zone
-- Search cities by name
+- **196 Tests** with **97% Coverage**
+- **15 Development Phases** completed
+- **8 Comprehensive Guides** + **3 Examples**
+- **Full Type Safety** with mypy
+- **Production Ready** with CI/CD pipeline
 
-### 💰 Price Calculation
-Calculate delivery costs before order creation.
-- Normal vs Express delivery pricing
-- Weight-based pricing
-- COD availability and fees
+## 🤝 Contributing
 
-## Documentation Sections
+We welcome contributions! Please see our [Contributing Guidelines](https://github.com/mojnomiya/pathao-python/blob/main/CONTRIBUTING.md) for details.
 
-### Getting Started
-- [Installation Guide](installation.md) - Setup and installation instructions
-- [Authentication](authentication.md) - Credential management and OAuth setup
+## 📄 License
 
-### API Guides
-- [Store Management](store_management.md) - Store creation and management
-- [Order Management](order_management.md) - Order creation and tracking
-- [Location Services](location_services.md) - Location hierarchy and search
-- [Price Calculation](price_calculation.md) - Delivery cost calculation
-- [Error Handling](error_handling.md) - Exception handling patterns
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/mojnomiya/pathao-python/blob/main/LICENSE) file for details.
 
-### Examples
-- [Basic Usage](../examples/basic_usage.py) - Simple getting started example
-- [Create Order](../examples/create_order.py) - Order creation walkthrough
-- [Error Handling](../examples/error_handling.py) - Error handling patterns
+## 🔗 Links
 
-## API Reference
-
-### PathaoClient
-
-Main client class providing access to all Pathao services.
-
-```python
-class PathaoClient:
-    def __init__(
-        self,
-        client_id: str = None,
-        client_secret: str = None,
-        username: str = None,
-        password: str = None,
-        environment: str = "sandbox"
-    )
-
-    # Service modules
-    stores: StoreModule
-    orders: OrderModule
-    locations: LocationModule
-    prices: PriceModule
-
-    # Token management
-    def get_access_token() -> str
-    def refresh_token() -> None
-    def is_token_valid() -> bool
-```
-
-### Exception Hierarchy
-
-```python
-PathaoException                 # Base exception
-├── AuthenticationError        # Authentication failures
-├── ValidationError           # Input validation errors
-├── NotFoundError            # Resource not found
-├── APIError                 # API server errors
-├── NetworkError             # Network/connection issues
-└── ConfigurationError       # Configuration problems
-```
-
-### Data Models
-
-All API responses are returned as typed dataclass objects:
-
-- `Store` - Store information
-- `Order` - Order creation response
-- `OrderInfo` - Order tracking information
-- `City`, `Zone`, `Area` - Location data
-- `PriceDetails` - Price calculation results
-
-## Environment Configuration
-
-### Sandbox Environment
-- For testing and development
-- Base URL: `https://courier-api-sandbox.pathao.com`
-- Use `environment="sandbox"`
-
-### Production Environment
-- For live operations
-- Base URL: `https://api.pathao.com`
-- Use `environment="production"`
-
-## Best Practices
-
-1. **Use Environment Variables** - Don't hardcode credentials
-2. **Start with Sandbox** - Test thoroughly before production
-3. **Handle Errors Gracefully** - Use specific exception types
-4. **Validate Inputs** - Check data before API calls
-5. **Implement Retry Logic** - Handle network issues automatically
-6. **Cache Location Data** - Location data changes infrequently
-
-## Support
-
-- **GitHub Issues**: [Report bugs and request features](https://github.com/yourusername/pathao-python/issues)
-- **Documentation**: This comprehensive guide
-- **Examples**: Working code examples in the `examples/` directory
-
-## Contributing
-
-We welcome contributions! Please see our [Contributing Guidelines](../CONTRIBUTING.md) for details on:
-- Code style and formatting
-- Testing requirements
-- Pull request process
-- Development setup
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](../LICENSE) file for details.
+- [GitHub Repository](https://github.com/mojnomiya/pathao-python)
+- [PyPI Package](https://pypi.org/project/pathao/)
+- [Issue Tracker](https://github.com/mojnomiya/pathao-python/issues)

@@ -1,7 +1,7 @@
 title: Pathao Python SDK
 description: A comprehensive Python SDK for the Pathao Courier Merchant API
 baseurl: "/pathao-python"
-url: "https://yourusername.github.io"
+url: "https://mojnomiya.github.io"
 
 markdown: kramdown
 highlighter: rouge
@@ -10,8 +10,33 @@ theme: minima
 plugins:
   - jekyll-feed
   - jekyll-sitemap
+  - jekyll-seo-tag
+
+author:
+  name: Md Mojno Miya
+  email: your.email@example.com
+
+social:
+  name: Pathao Python SDK
+  links:
+    - https://github.com/mojnomiya/pathao-python
+
+header_pages:
+  - installation.md
+  - authentication.md
+  - store_management.md
+  - order_management.md
+  - location_services.md
+  - price_calculation.md
+  - error_handling.md
+  - api_reference.md
 
 exclude:
   - .github/
   - .gitignore
   - README.md
+  - requirements-dev.txt
+  - pyproject.toml
+  - tests/
+  - examples/
+  - venv/

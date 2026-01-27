@@ -1,3 +1,9 @@
+---
+layout: page
+title: Installation
+permalink: /installation/
+---
+
 # Installation Guide
 
 ## Requirements
@@ -14,7 +20,7 @@ pip install pathao
 ## Install from Source
 
 ```bash
-git clone https://github.com/yourusername/pathao-python.git
+git clone https://github.com/mojnomiya/pathao-python.git
 cd pathao-python
 pip install -e .
 ```
@@ -22,7 +28,7 @@ pip install -e .
 ## Development Installation
 
 ```bash
-git clone https://github.com/yourusername/pathao-python.git
+git clone https://github.com/mojnomiya/pathao-python.git
 cd pathao-python
 pip install -r requirements-dev.txt
 pip install -e .
@@ -79,6 +85,6 @@ PATHAO_PASSWORD=your_password
 
 ## Next Steps
 
-- [Authentication Guide](authentication.md)
-- [Basic Usage Examples](../examples/basic_usage.py)
-- [API Documentation](index.md)
+- [Authentication Guide](authentication.html)
+- [Basic Usage Examples](https://github.com/mojnomiya/pathao-python/tree/main/examples)
+- [API Documentation](api_reference.html)

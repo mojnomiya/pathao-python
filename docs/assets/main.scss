@@ -1,0 +1,130 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+/* Custom styles for Pathao Python SDK docs */
+
+/* Header styling */
+.site-header {
+  border-top: 5px solid #2196F3;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.site-title {
+  font-weight: 600;
+  color: #2196F3 !important;
+}
+
+/* Navigation styling */
+.site-nav .page-link {
+  color: #424242;
+  font-weight: 500;
+}
+
+.site-nav .page-link:hover {
+  color: #2196F3;
+}
+
+/* Content styling */
+.post-content h1 {
+  color: #1976D2;
+  border-bottom: 2px solid #E3F2FD;
+  padding-bottom: 0.3em;
+}
+
+.post-content h2 {
+  color: #1976D2;
+  margin-top: 2em;
+}
+
+.post-content h3 {
+  color: #424242;
+}
+
+/* Code blocks */
+.highlight {
+  border-radius: 6px;
+  border: 1px solid #E0E0E0;
+}
+
+code {
+  background-color: #F5F5F5;
+  padding: 2px 4px;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+/* Tables */
+table {
+  border-collapse: collapse;
+  margin: 1em 0;
+  width: 100%;
+}
+
+table th {
+  background-color: #E3F2FD;
+  color: #1976D2;
+  font-weight: 600;
+}
+
+table th, table td {
+  border: 1px solid #E0E0E0;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+table tr:nth-child(even) {
+  background-color: #FAFAFA;
+}
+
+/* Badges */
+img[alt*="badge"] {
+  margin: 2px;
+}
+
+/* Feature list styling */
+ul li:has(strong) {
+  margin-bottom: 0.5em;
+}
+
+/* Links */
+a {
+  color: #2196F3;
+}
+
+a:hover {
+  color: #1976D2;
+}
+
+/* Buttons and callouts */
+.btn {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #2196F3;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.btn:hover {
+  background-color: #1976D2;
+  color: white;
+}
+
+/* Footer */
+.site-footer {
+  background-color: #F5F5F5;
+  border-top: 1px solid #E0E0E0;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 600px) {
+  .site-nav {
+    background-color: #fff;
+    border: 1px solid #E0E0E0;
+    border-radius: 5px;
+  }
+}
