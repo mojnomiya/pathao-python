@@ -43,10 +43,10 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/yourusername/pathao-python"
+Homepage = "https://github.com/mojnomiya/pathao-python"
 Documentation = "https://pathao-python.readthedocs.io"
-Repository = "https://github.com/yourusername/pathao-python.git"
-"Bug Tracker" = "https://github.com/yourusername/pathao-python/issues"
+Repository = "https://github.com/mojnomiya/pathao-python.git"
+"Bug Tracker" = "https://github.com/mojnomiya/pathao-python/issues"
 
 [tool.setuptools.packages.find]
 where = ["."] 
@@ -59,7 +59,6 @@ target-version = ['py38']
 include = '\.pyi?$'
 extend-exclude = '''
 /(
-  # directories
   \.eggs
   | \.git
   | \.hg

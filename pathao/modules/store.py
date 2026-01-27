@@ -86,6 +86,7 @@ class StoreModule:
 
         # Get access token
         token = self.auth_module.get_access_token()
+        headers = {"Authorization": f"Bearer {token}"}
 
         # Make API request
         response = self.http_client.get(
