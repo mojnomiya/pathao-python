@@ -101,6 +101,7 @@ show_missing = true
 skip_covered = false
 
 [tool.mypy]
+files = "pathao"
 python_version = "3.9"
 warn_return_any = true
 warn_unused_configs = true
@@ -114,11 +115,6 @@ warn_unused_ignores = true
 warn_no_return = true
 warn_unreachable = true
 strict_equality = true
-exclude = [
-    "^tests/.*\\.py$",
-    "^examples/.*\\.py$",
-    "^setup\\.py$",
-]
 
 [[tool.mypy.overrides]]
 module = [
