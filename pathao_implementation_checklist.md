@@ -588,26 +588,24 @@
       - [x] `is_token_valid() -> bool`
     - [x] Private methods:
       - [x] `_load_credentials()` from parameters or environment
+      - [x] `_get_base_url() -> str`
+      - [x] `_initialize_modules() -> None`
 
-**Credential Management:**
-- [x] Support for parameter-based credentials
-- [x] Support for environment variable credentials
-- [x] Mixed credential sources (parameters override environment)
-- [x] Comprehensive validation with ConfigurationError
-
-**Environment Support:**
-- [x] Sandbox environment (https://courier-api-sandbox.pathao.com)
-- [x] Production environment (https://courier-api.pathao.com)
-- [x] Environment validation with proper error handling
+**Credential Loading:**
+- [x] From parameters
+- [x] From environment variables
+- [x] From .env file (python-dotenv)
+- [x] Precedence: parameters > env vars > .env file
 
 **Test coverage:**
 - [x] Initialization with parameters
 - [x] Initialization with environment variables
-- [x] Mixed credential sources
-- [x] Environment validation (sandbox/production)
-- [x] Missing credentials handling
-- [x] Module initialization verification
-- [x] Public method delegation
+- [x] Initialization with .env file (automatic loading)
+- [x] Missing credentials error
+- [x] Invalid environment error
+- [x] Module property access
+- [x] Token management methods
+- [x] Helper method testing (_get_base_url)
 
 ### 9.2 Main Client Features
 
@@ -635,31 +633,13 @@
   - [x] Location services (cities, zones, areas)
   - [x] Price calculation (delivery pricing)
 
-- [x] **Comprehensive test suite (11 tests, 100% pass)**
+- [x] **Comprehensive test suite (13 tests, 100% pass)**
   - [x] Initialization scenarios (parameters, environment, mixed)
   - [x] Environment validation and URL configuration
   - [x] Credential validation and error handling
   - [x] Module initialization and dependency injection
-  - [x] Public method delegation to auth module() -> None`
-      - [ ] `_get_base_url() -> str`
-      - [ ] `_initialize_modules() -> None`
-
-**Credential Loading:**
-- [ ] From parameters
-- [ ] From environment variables
-- [ ] From .env file (python-dotenv)
-- [ ] Precedence: parameters > env vars > .env file
-
-**Test coverage:**
-- [ ] Initialization with parameters
-- [ ] Initialization with env vars
-- [ ] Initialization with .env file
-- [ ] Missing credentials error
-- [ ] Invalid environment error
-- [ ] Module property access
-- [ ] Token management methods
-
----
+  - [x] Public method delegation to auth module
+  - [x] Helper method testing (_get_base_url)---
 
 ## Phase 10: Package Initialization
 

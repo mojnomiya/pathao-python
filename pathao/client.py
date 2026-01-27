@@ -3,6 +3,13 @@
 import os
 from typing import Optional
 
+try:
+    from dotenv import load_dotenv
+
+    load_dotenv()
+except ImportError:
+    pass
+
 from .exceptions import ConfigurationError
 from .http_client import HTTPClient
 from .modules.auth import AuthModule
@@ -36,24 +43,15 @@ class PathaoClient:
                 missing_config="environment",
             )
 
-        # Set base URL
-        base_url = (
-            "https://courier-api.pathao.com"
-            if environment == "production"
-            else "https://courier-api-sandbox.pathao.com"
-        )
-
         # Initialize HTTP client
+        base_url = self._get_base_url(environment)
         self.http_client = HTTPClient(base_url)
 
         # Initialize auth module
         self.auth_module = AuthModule(self.http_client, credentials)
 
         # Initialize service modules
-        self.stores = StoreModule(self.http_client, self.auth_module)
-        self.orders = OrderModule(self.http_client, self.auth_module)
-        self.locations = LocationModule(self.http_client, self.auth_module)
-        self.prices = PriceModule(self.http_client, self.auth_module)
+        self._initialize_modules()
 
     def _load_credentials(
         self,
@@ -80,6 +78,21 @@ class PathaoClient:
             )
 
         return credentials
+
+    def _get_base_url(self, environment: str) -> str:
+        """Get base URL for the given environment."""
+        return (
+            "https://courier-api.pathao.com"
+            if environment == "production"
+            else "https://courier-api-sandbox.pathao.com"
+        )
+
+    def _initialize_modules(self) -> None:
+        """Initialize all service modules."""
+        self.stores = StoreModule(self.http_client, self.auth_module)
+        self.orders = OrderModule(self.http_client, self.auth_module)
+        self.locations = LocationModule(self.http_client, self.auth_module)
+        self.prices = PriceModule(self.http_client, self.auth_module)
 
     def get_access_token(self) -> str:
         """Get current access token."""

@@ -163,3 +163,25 @@ class TestPathaoClient:
 
         assert client.auth_module.credentials["client_id"] == "env_id"
         assert client.auth_module.credentials["password"] == "param_pass"
+
+    def test_get_base_url_sandbox(self):
+        """Test base URL for sandbox environment."""
+        client = PathaoClient(
+            client_id="test_id",
+            client_secret="test_secret",
+            username="test_user",
+            password="test_pass",
+        )
+        url = client._get_base_url("sandbox")
+        assert url == "https://courier-api-sandbox.pathao.com"
+
+    def test_get_base_url_production(self):
+        """Test base URL for production environment."""
+        client = PathaoClient(
+            client_id="test_id",
+            client_secret="test_secret",
+            username="test_user",
+            password="test_pass",
+        )
+        url = client._get_base_url("production")
+        assert url == "https://courier-api.pathao.com"
