@@ -37,7 +37,7 @@ def sample_store_data():
             "contact_number": "01712345678",
             "address": "123 Test Street, Dhaka",
             "secondary_contact": "01987654321",
-            "hub_id": 1
+            "hub_id": 1,
         }
     }
 
@@ -53,7 +53,7 @@ def sample_order_data():
             "amount_to_collect": 100.0,
             "recipient_name": "Jane Doe",
             "recipient_phone": "01712345678",
-            "recipient_address": "456 Test Road, Dhaka"
+            "recipient_address": "456 Test Road, Dhaka",
         }
     }
 
@@ -65,16 +65,16 @@ def sample_location_data():
         "data": {
             "cities": [
                 {"city_id": 1, "city_name": "Dhaka"},
-                {"city_id": 2, "city_name": "Chittagong"}
+                {"city_id": 2, "city_name": "Chittagong"},
             ],
             "zones": [
                 {"zone_id": 1, "zone_name": "Dhanmondi", "city_id": 1},
-                {"zone_id": 2, "zone_name": "Gulshan", "city_id": 1}
+                {"zone_id": 2, "zone_name": "Gulshan", "city_id": 1},
             ],
             "areas": [
                 {"area_id": 1, "area_name": "Dhanmondi 27", "zone_id": 1},
-                {"area_id": 2, "area_name": "Gulshan 1", "zone_id": 2}
-            ]
+                {"area_id": 2, "area_name": "Gulshan 1", "zone_id": 2},
+            ],
         }
     }
 
@@ -91,7 +91,7 @@ def sample_price_data():
             "cod_percentage": 1.0,
             "additional_charges": 0.0,
             "final_price": 55.0,
-            "plan_id": 1
+            "plan_id": 1,
         }
     }
 
@@ -103,5 +103,5 @@ def sample_auth_token():
         access_token="mock_access_token",
         refresh_token="mock_refresh_token",
         expires_in=3600,
-        token_type="Bearer"
+        token_type="Bearer",
     )

@@ -9,7 +9,7 @@ from tests.fixtures.mock_responses import (
     STORE_CREATE_SUCCESS,
     ORDER_CREATE_SUCCESS,
     CITIES_SUCCESS,
-    PRICE_SUCCESS
+    PRICE_SUCCESS,
 )
 
 
@@ -24,17 +24,17 @@ class TestPathaoClientIntegration:
             client_secret="test_client_secret",
             username="test@example.com",
             password="test_password",
-            environment="sandbox"
+            environment="sandbox",
         )
 
-    @patch('pathao.http_client.HTTPClient.post')
+    @patch("pathao.http_client.HTTPClient.post")
     def test_full_workflow_create_store_and_order(self, mock_post, client):
         """Test full workflow: authenticate, create store, create order."""
         # Mock authentication
         mock_post.side_effect = [
             AUTH_SUCCESS_RESPONSE,  # Initial auth
-            STORE_CREATE_SUCCESS,   # Store creation
-            ORDER_CREATE_SUCCESS    # Order creation
+            STORE_CREATE_SUCCESS,  # Store creation
+            ORDER_CREATE_SUCCESS,  # Order creation
         ]
 
         # Create store
@@ -45,9 +45,9 @@ class TestPathaoClientIntegration:
             address="123 Test Street, Dhaka",
             city_id=1,
             zone_id=1,
-            area_id=1
+            area_id=1,
         )
-        
+
         assert store.store_id == 123
         assert store.store_name == "Test Store"
 
@@ -64,20 +64,20 @@ class TestPathaoClientIntegration:
             item_type=2,
             item_quantity=1,
             item_weight=0.5,
-            amount_to_collect=100.0
+            amount_to_collect=100.0,
         )
-        
+
         assert order.consignment_id == "D-12345"
         assert order.order_status == "Pending"
 
-    @patch('pathao.http_client.HTTPClient.get')
-    @patch('pathao.http_client.HTTPClient.post')
+    @patch("pathao.http_client.HTTPClient.get")
+    @patch("pathao.http_client.HTTPClient.post")
     def test_location_and_price_workflow(self, mock_post, mock_get, client):
         """Test location lookup and price calculation workflow."""
         # Mock authentication and API calls
         mock_post.side_effect = [
             AUTH_SUCCESS_RESPONSE,  # Initial auth
-            PRICE_SUCCESS          # Price calculation
+            PRICE_SUCCESS,  # Price calculation
         ]
         mock_get.return_value = CITIES_SUCCESS
 
@@ -93,14 +93,14 @@ class TestPathaoClientIntegration:
             item_type=2,
             weight=0.5,
             recipient_city=1,
-            recipient_zone=1
+            recipient_zone=1,
         )
-        
+
         assert price.price == 60.0
         assert price.final_price == 55.0
         assert price.cod_enabled is True
 
-    @patch('pathao.http_client.HTTPClient.post')
+    @patch("pathao.http_client.HTTPClient.post")
     def test_authentication_error_propagation(self, mock_post, client):
         """Test that authentication errors propagate correctly across modules."""
         # Mock authentication failure
@@ -123,7 +123,7 @@ class TestPathaoClientIntegration:
                 item_type=2,
                 item_quantity=1,
                 item_weight=0.5,
-                amount_to_collect=0
+                amount_to_collect=0,
             )
 
     def test_validation_error_consistency(self, client):
@@ -137,7 +137,7 @@ class TestPathaoClientIntegration:
                 address="123 Test Street",
                 city_id=1,
                 zone_id=1,
-                area_id=1
+                area_id=1,
             )
 
         with pytest.raises(ValidationError, match="Invalid phone number"):
@@ -153,17 +153,17 @@ class TestPathaoClientIntegration:
                 item_type=2,
                 item_quantity=1,
                 item_weight=0.5,
-                amount_to_collect=0
+                amount_to_collect=0,
             )
 
-    @patch('pathao.http_client.HTTPClient.post')
+    @patch("pathao.http_client.HTTPClient.post")
     def test_token_refresh_across_modules(self, mock_post, client):
         """Test that token refresh works across different module operations."""
         # Mock initial auth and refresh
         mock_post.side_effect = [
             AUTH_SUCCESS_RESPONSE,  # Initial auth
             AUTH_SUCCESS_RESPONSE,  # Token refresh
-            STORE_CREATE_SUCCESS    # Store creation after refresh
+            STORE_CREATE_SUCCESS,  # Store creation after refresh
         ]
 
         # Simulate token expiring soon
@@ -179,9 +179,9 @@ class TestPathaoClientIntegration:
             address="123 Test Street",
             city_id=1,
             zone_id=1,
-            area_id=1
+            area_id=1,
         )
-        
+
         assert store.store_id == 123
         # Verify that post was called 3 times (auth + refresh + create)
         assert mock_post.call_count == 3
@@ -220,10 +220,10 @@ class TestErrorHandlingIntegration:
             client_secret="test_client_secret",
             username="test@example.com",
             password="test_password",
-            environment="sandbox"
+            environment="sandbox",
         )
 
-    @patch('pathao.http_client.HTTPClient.post')
+    @patch("pathao.http_client.HTTPClient.post")
     def test_api_error_consistency(self, mock_post, client):
         """Test that API errors are handled consistently across modules."""
         # Mock API error response
@@ -238,7 +238,7 @@ class TestErrorHandlingIntegration:
                 address="123 Test Street",
                 city_id=1,
                 zone_id=1,
-                area_id=1
+                area_id=1,
             )
 
         with pytest.raises(APIError):
@@ -254,7 +254,7 @@ class TestErrorHandlingIntegration:
                 item_type=2,
                 item_quantity=1,
                 item_weight=0.5,
-                amount_to_collect=0
+                amount_to_collect=0,
             )
 
     def test_environment_configuration_consistency(self):
@@ -265,9 +265,9 @@ class TestErrorHandlingIntegration:
             client_secret="test_client_secret",
             username="test@example.com",
             password="test_password",
-            environment="sandbox"
+            environment="sandbox",
         )
-        
+
         assert "sandbox" in sandbox_client.http_client.base_url
 
         # Test production environment
@@ -276,7 +276,7 @@ class TestErrorHandlingIntegration:
             client_secret="test_client_secret",
             username="test@example.com",
             password="test_password",
-            environment="production"
+            environment="production",
         )
-        
+
         assert "api.pathao.com" in prod_client.http_client.base_url

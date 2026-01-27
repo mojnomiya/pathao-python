@@ -8,7 +8,7 @@ from .price import PriceModule
 
 __all__ = [
     "AuthModule",
-    "StoreModule", 
+    "StoreModule",
     "OrderModule",
     "LocationModule",
     "PriceModule",
