@@ -61,6 +61,7 @@ class AuthModule:
                 logger.warning("Token refresh failed, obtaining new token")
                 self._token = self._issue_token("password")
 
+        assert self._token is not None  # Type hint for mypy
         return self._token.access_token
 
     def refresh_token(self) -> AuthToken:

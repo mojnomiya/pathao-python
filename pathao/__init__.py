@@ -1,7 +1,6 @@
 """Pathao Python SDK - A comprehensive Python SDK
 for the Pathao Courier Merchant API."""
 
-
 __version__ = "0.1.0"
 
 # Import main client

@@ -92,7 +92,9 @@ class StoreModule:
         params = {"page": page, "per_page": per_page}
 
         # Make API request
-        response = self.http_client.get("aladdin/api/v1/stores", headers, params)
+        response = self.http_client.get(
+            f"aladdin/api/v1/stores", headers, {"page": page, "per_page": per_page}
+        )
 
         # Parse response
         data = response["data"]

@@ -1,6 +1,5 @@
 """Tests for Pathao SDK exceptions."""
 
-import pytest
 from pathao.exceptions import (
     PathaoException,
     AuthenticationError,

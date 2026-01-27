@@ -138,7 +138,7 @@ class HTTPClient:
                 try:
                     response_data = response.json()
                     logger.debug(f"Request successful: {response.status_code}")
-                    return response_data
+                    return response_data  # type: ignore[no-any-return]
                 except json.JSONDecodeError as e:
                     raise APIError(
                         f"Invalid JSON response: {e}",

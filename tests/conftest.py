@@ -1,10 +1,10 @@
 """Pytest configuration and shared fixtures for Pathao Python SDK tests."""
 
 import pytest
-from unittest.mock import Mock, MagicMock
+from unittest.mock import Mock
 from pathao.http_client import HTTPClient
 from pathao.modules.auth import AuthModule
-from pathao.models import Store, Order, City, PriceDetails, AuthToken
+from pathao.models import AuthToken
 
 
 @pytest.fixture

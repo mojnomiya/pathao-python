@@ -3,7 +3,6 @@
 import json
 import pytest
 from unittest.mock import Mock, patch
-import requests
 from requests.exceptions import ConnectionError, HTTPError, Timeout, RequestException
 
 from pathao.http_client import HTTPClient

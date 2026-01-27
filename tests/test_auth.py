@@ -1,7 +1,7 @@
 """Tests for Pathao SDK authentication module."""
 
 from datetime import datetime, timedelta
-from unittest.mock import Mock, patch
+from unittest.mock import Mock
 import pytest
 
 from pathao.modules.auth import AuthModule
@@ -333,7 +333,7 @@ class TestAuthModuleGetAccessToken:
         assert call_args["grant_type"] == "refresh_token"
 
     def test_get_access_token_expiring_soon_refresh_fails(self):
-        """Test get access token with expiring token, refresh fails, fallback to password."""
+        """Test get access token with expiring token, refresh fails."""
         expiring_token = AuthToken(
             access_token="old_token",
             token_type="Bearer",

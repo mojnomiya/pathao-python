@@ -1,7 +1,6 @@
 """Tests for Pathao SDK logger."""
 
 import logging
-import pytest
 from pathao.logger import get_logger, setup_logging, SensitiveDataFormatter
 
 

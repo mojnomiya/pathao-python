@@ -1,7 +1,6 @@
 """Tests for Pathao SDK models."""
 
 from datetime import datetime, timedelta
-import pytest
 from pathao.models import (
     AuthToken,
     Store,
@@ -12,9 +11,7 @@ from pathao.models import (
     City,
     CityList,
     Zone,
-    ZoneList,
     Area,
-    AreaList,
     PriceDetails,
 )
 

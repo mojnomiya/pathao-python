@@ -1,7 +1,7 @@
 """Integration tests for Pathao Python SDK."""
 
 import pytest
-from unittest.mock import Mock, patch
+from unittest.mock import patch
 from pathao import PathaoClient
 from pathao.exceptions import AuthenticationError, ValidationError, APIError
 from tests.fixtures.mock_responses import (
