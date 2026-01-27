@@ -67,7 +67,7 @@ class TestPriceModule:
 
         mock_auth_module.get_access_token.assert_called_once()
         mock_http_client.post.assert_called_once_with(
-            "aladdin/api/v1/price-plan",
+            "aladdin/api/v1/merchant/price-plan",
             {"Authorization": "Bearer test_token"},
             {
                 "store_id": 1,

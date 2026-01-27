@@ -59,7 +59,7 @@ class TestLocationModule:
 
         mock_auth_module.get_access_token.assert_called_once()
         mock_http_client.get.assert_called_once_with(
-            "aladdin/api/v1/cities", {"Authorization": "Bearer test_token"}
+            "aladdin/api/v1/city-list", {"Authorization": "Bearer test_token"}
         )
 
     def test_get_zones_success(

@@ -25,12 +25,14 @@ STORE_CREATE_SUCCESS = {
     "type": "success",
     "data": {
         "store_id": 123,
-        "name": "Test Store",
-        "contact_name": "John Doe",
-        "contact_number": "01712345678",
-        "address": "123 Test Street, Dhaka",
-        "secondary_contact": "01987654321",
+        "store_name": "Test Store",
+        "store_address": "123 Test Street, Dhaka",
+        "is_active": 1,
+        "city_id": 1,
+        "zone_id": 1,
         "hub_id": 1,
+        "is_default_store": False,
+        "is_default_return_store": False,
     },
 }
 
@@ -72,12 +74,11 @@ ORDER_CREATE_SUCCESS = {
     "type": "success",
     "data": {
         "consignment_id": "D-12345",
+        "merchant_order_id": "TEST-001",
         "order_status": "Pending",
-        "item_description": "Test Item",
-        "amount_to_collect": 100.0,
-        "recipient_name": "Jane Doe",
-        "recipient_phone": "01712345678",
-        "recipient_address": "456 Test Road, Dhaka",
+        "delivery_fee": 60.0,
+        "created_at": "2023-01-01T10:00:00Z",
+        "updated_at": "2023-01-01T10:00:00Z",
     },
 }
 

@@ -309,8 +309,8 @@ class TestPathaoSandboxIntegration:
             env_client = PathaoClient(environment="sandbox")
 
             # Verify credentials were loaded from environment
-            assert env_client.auth.credentials["client_id"] == "env_client_id"
-            assert env_client.auth.credentials["username"] == "env@example.com"
+            assert env_client.auth_module.credentials["client_id"] == "env_client_id"
+            assert env_client.auth_module.credentials["username"] == "env@example.com"
 
         finally:
             # Clean up environment variables

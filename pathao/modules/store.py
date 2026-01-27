@@ -63,7 +63,13 @@ class StoreModule:
         response = self.http_client.post("aladdin/api/v1/stores", headers, data)
 
         # Parse response
-        store_data = response["data"]["data"]
+        if "data" in response and "data" in response["data"]:
+            store_data = response["data"]["data"]
+        elif "data" in response:
+            store_data = response["data"]
+        else:
+            store_data = response
+
         return Store(
             store_id=store_data["store_id"],
             store_name=store_data["store_name"],
@@ -137,7 +143,13 @@ class StoreModule:
             )
 
             # Parse response
-            store_data = response["data"]
+            if "data" in response and "data" in response["data"]:
+                store_data = response["data"]["data"]
+            elif "data" in response:
+                store_data = response["data"]
+            else:
+                store_data = response
+
             return Store(
                 store_id=store_data["store_id"],
                 store_name=store_data["store_name"],

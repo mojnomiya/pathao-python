@@ -272,7 +272,8 @@ class TestOrderModule:
         # Verify API call
         mock_auth_module.get_access_token.assert_called_once()
         mock_http_client.get.assert_called_once_with(
-            "aladdin/api/v1/orders/CON123456", {"Authorization": "Bearer test_token"}
+            "aladdin/api/v1/orders/CON123456/info",
+            {"Authorization": "Bearer test_token"},
         )
 
     def test_get_info_validation_error(self, order_module):
