@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pathao"
+version = "0.1.0"
+description = "Python SDK for Pathao Courier Merchant API"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Your Name", email = "your.email@example.com"}
+]
+keywords = ["pathao", "courier", "shipping", "logistics", "api"]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/pathao-python"
+Documentation = "https://pathao-python.readthedocs.io"
+Repository = "https://github.com/yourusername/pathao-python.git"
+"Bug Tracker" = "https://github.com/yourusername/pathao-python/issues"
