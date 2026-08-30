@@ -58,24 +58,6 @@ line-length = 88
 target-version = ['py38']
 include = '\\.pyi?$'
 
-[tool.pytest.ini_options]
-minversion = "6.0"
-addopts = "-ra -q --strict-markers --strict-config"
-testpaths = ["tests"]
-python_files = ["test_*.py"]
-python_classes = ["Test*"]
-python_functions = ["test_*"]
-markers = [
-    "unit: Unit tests",
-    "integration: Integration tests",
-    "slow: Slow tests",
-]
-filterwarnings = [
-    "error",
-    "ignore::UserWarning",
-    "ignore::DeprecationWarning",
-]
-
 [tool.coverage.run]
 source = ["pathao"]
 omit = [
