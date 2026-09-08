@@ -27,11 +27,11 @@ class TestPathaoClientIntegration:
             environment="sandbox",
         )
 
-    @patch("pathao.http_client.HTTPClient.post")
-    def test_full_workflow_create_store_and_order(self, mock_post, client):
+    @patch("pathao.http_client.HTTPClient._make_request")
+    def test_full_workflow_create_store_and_order(self, mock_request, client):
         """Test full workflow: authenticate, create store, create order."""
         # Mock authentication
-        mock_post.side_effect = [
+        mock_request.side_effect = [
             AUTH_SUCCESS_RESPONSE,  # Initial auth
             STORE_CREATE_SUCCESS,  # Store creation
             ORDER_CREATE_SUCCESS,  # Order creation
@@ -70,16 +70,15 @@ class TestPathaoClientIntegration:
         assert order.consignment_id == "D-12345"
         assert order.order_status == "Pending"
 
-    @patch("pathao.http_client.HTTPClient.get")
-    @patch("pathao.http_client.HTTPClient.post")
-    def test_location_and_price_workflow(self, mock_post, mock_get, client):
+    @patch("pathao.http_client.HTTPClient._make_request")
+    def test_location_and_price_workflow(self, mock_request, client):
         """Test location lookup and price calculation workflow."""
         # Mock authentication and API calls
-        mock_post.side_effect = [
+        mock_request.side_effect = [
             AUTH_SUCCESS_RESPONSE,  # Initial auth
+            CITIES_SUCCESS,  # Get cities
             PRICE_SUCCESS,  # Price calculation
         ]
-        mock_get.return_value = CITIES_SUCCESS
 
         # Get cities
         cities = client.locations.get_cities()
@@ -91,7 +90,7 @@ class TestPathaoClientIntegration:
             store_id=1,
             delivery_type=48,
             item_type=2,
-            weight=0.5,
+            item_weight=0.5,
             recipient_city=1,
             recipient_zone=1,
         )
@@ -100,11 +99,11 @@ class TestPathaoClientIntegration:
         assert price.final_price == 55.0
         assert price.cod_enabled is True
 
-    @patch("pathao.http_client.HTTPClient.post")
-    def test_authentication_error_propagation(self, mock_post, client):
+    @patch("pathao.http_client.HTTPClient._make_request")
+    def test_authentication_error_propagation(self, mock_request, client):
         """Test that authentication errors propagate correctly across modules."""
         # Mock authentication failure
-        mock_post.side_effect = AuthenticationError("Invalid credentials")
+        mock_request.side_effect = AuthenticationError("Invalid credentials")
 
         # Any module operation should fail with authentication error
         with pytest.raises(AuthenticationError):
@@ -129,7 +128,7 @@ class TestPathaoClientIntegration:
     def test_validation_error_consistency(self, client):
         """Test that validation errors are consistent across modules."""
         # Test invalid phone number validation across modules
-        with pytest.raises(ValidationError, match="Invalid phone number"):
+        with pytest.raises(ValidationError, match="Phone number must be exactly"):
             client.stores.create(
                 store_name="Test Store",
                 contact_name="John Doe",
@@ -140,7 +139,7 @@ class TestPathaoClientIntegration:
                 area_id=1,
             )
 
-        with pytest.raises(ValidationError, match="Invalid phone number"):
+        with pytest.raises(ValidationError, match="Phone number must be exactly"):
             client.orders.create(
                 store_id=1,
                 merchant_order_id="TEST-001",
@@ -156,20 +155,25 @@ class TestPathaoClientIntegration:
                 amount_to_collect=0,
             )
 
-    @patch("pathao.http_client.HTTPClient.post")
-    def test_token_refresh_across_modules(self, mock_post, client):
+    @patch("pathao.http_client.HTTPClient._make_request")
+    def test_token_refresh_across_modules(self, mock_request, client):
         """Test that token refresh works across different module operations."""
-        # Mock initial auth and refresh
-        mock_post.side_effect = [
-            AUTH_SUCCESS_RESPONSE,  # Initial auth
+        # First trigger initial auth
+        mock_request.return_value = AUTH_SUCCESS_RESPONSE
+        client.auth_module.get_access_token()
+        assert mock_request.call_count == 1
+
+        # Now make token expire soon
+        client.auth_module._token.created_at = client.auth_module._token.created_at.replace(
+            year=2020  # Make token very old
+        )
+
+        # Reset mock for the refresh + create calls
+        mock_request.side_effect = [
             AUTH_SUCCESS_RESPONSE,  # Token refresh
             STORE_CREATE_SUCCESS,  # Store creation after refresh
         ]
-
-        # Simulate token expiring soon
-        client.auth._token.created_at = client.auth._token.created_at.replace(
-            year=2020  # Make token very old
-        )
+        mock_request.return_value = None
 
         # This should trigger token refresh
         store = client.stores.create(
@@ -183,8 +187,8 @@ class TestPathaoClientIntegration:
         )
 
         assert store.store_id == 123
-        # Verify that post was called 3 times (auth + refresh + create)
-        assert mock_post.call_count == 3
+        # Verify that _make_request was called 2 more times (refresh + create)
+        assert mock_request.call_count == 3
 
     def test_module_dependency_injection(self, client):
         """Test that all modules receive proper dependencies."""
@@ -223,14 +227,15 @@ class TestErrorHandlingIntegration:
             environment="sandbox",
         )
 
-    @patch("pathao.http_client.HTTPClient.post")
-    def test_api_error_consistency(self, mock_post, client):
+    @patch("pathao.http_client.HTTPClient._make_request")
+    def test_api_error_consistency(self, mock_request, client):
         """Test that API errors are handled consistently across modules."""
         # Mock API error response
-        mock_post.side_effect = APIError("Server error", status_code=500)
+        mock_request.side_effect = APIError("Server error", status_code=500)
 
         # All modules should handle API errors the same way
-        with pytest.raises(APIError):
+        # Auth wraps APIError into AuthenticationError
+        with pytest.raises(AuthenticationError):
             client.stores.create(
                 store_name="Test Store",
                 contact_name="John Doe",
@@ -241,7 +246,7 @@ class TestErrorHandlingIntegration:
                 area_id=1,
             )
 
-        with pytest.raises(APIError):
+        with pytest.raises(AuthenticationError):
             client.orders.create(
                 store_id=1,
                 merchant_order_id="TEST-001",

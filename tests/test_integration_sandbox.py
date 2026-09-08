@@ -6,17 +6,26 @@ from pathao import PathaoClient
 from pathao.exceptions import ValidationError, NotFoundError
 
 
+@pytest.mark.sandbox
 class TestPathaoSandboxIntegration:
     """Integration tests using real sandbox credentials."""
 
     @pytest.fixture(scope="class")
     def client(self):
         """Create a PathaoClient instance with sandbox credentials."""
+        client_id = os.getenv("PATHAO_CLIENT_ID")
+        client_secret = os.getenv("PATHAO_CLIENT_SECRET")
+        username = os.getenv("PATHAO_USERNAME")
+        password = os.getenv("PATHAO_PASSWORD")
+
+        if not all([client_id, client_secret, username, password]):
+            pytest.skip("Sandbox credentials not available in environment")
+
         return PathaoClient(
-            client_id=os.getenv("PATHAO_CLIENT_ID", "test_client_id"),
-            client_secret=os.getenv("PATHAO_CLIENT_SECRET", "test_client_secret"),
-            username=os.getenv("PATHAO_USERNAME", "test@example.com"),
-            password=os.getenv("PATHAO_PASSWORD", "test_password"),
+            client_id=client_id,
+            client_secret=client_secret,
+            username=username,
+            password=password,
             environment="sandbox",
         )
 

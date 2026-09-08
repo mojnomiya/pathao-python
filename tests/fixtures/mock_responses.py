@@ -146,7 +146,7 @@ PRICE_SUCCESS = {
         "promo_discount": 0.0,
         "cod_enabled": True,
         "cod_percentage": 1.0,
-        "additional_charges": 0.0,
+        "additional_charge": 0.0,
         "final_price": 55.0,
         "plan_id": 1,
     },
