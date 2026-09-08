@@ -164,7 +164,8 @@ class TestPathaoClientIntegration:
         assert mock_request.call_count == 1
 
         # Now make token expire soon
-        client.auth_module._token.created_at = client.auth_module._token.created_at.replace(
+        token = client.auth_module._token
+        client.auth_module._token.created_at = token.created_at.replace(
             year=2020  # Make token very old
         )
 
